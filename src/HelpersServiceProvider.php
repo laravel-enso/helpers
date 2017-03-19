@@ -23,6 +23,6 @@ class HelpersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->make('LaravelEnso\Helpers\Classes\Object');
+        //
     }
 }
