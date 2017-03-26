@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/helpers",
-    "description": "Collection of helper classes for laravel-enso",
+    "description": "Collection of helper classes for Laravel-enso/core",
     "type": "library",
     "license": "MIT",
     "authors": [
