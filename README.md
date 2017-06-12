@@ -5,4 +5,4 @@
 [![Total Downloads](https://poser.pugx.org/laravel-enso/helpers/downloads)](https://packagist.org/packages/laravel-enso/helpers)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/helpers/version)](https://packagist.org/packages/laravel-enso/helpers)
 
-Collection of helper classes for laravel-enso/core package
+Collection of helper classes for the LaravelEnso Core package
