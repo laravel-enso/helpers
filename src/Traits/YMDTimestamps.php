@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 trait YMDTimestamps
 {
-	public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute($value)
     {
         return $value ? Carbon::parse($value)->format('Y-m-d') : null;
     }
