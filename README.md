@@ -6,3 +6,11 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/helpers/version)](https://packagist.org/packages/laravel-enso/helpers)
 
 Collection of helper classes for the LaravelEnso Core package
+
+### Includes
+#### Traits
+- IsActiveTrait - adds active and disabled scopes and helper attributes
+- FormattedTimestamps - used to format timestamps created with the timestamps() method in the Laravel migrations
+#### Classes
+- A concrete Object class that can be converted to string, JSON and array, meant to be used as-is or extended
+- An AbstractEnum object, meant to extended and bringing Enumeration-like functionality
