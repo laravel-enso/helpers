@@ -1,17 +1,17 @@
 {
     "name": "laravel-enso/helpers",
-    "description": "Collection of helper classes for Laravel-enso/core",
+    "description": "Helper classes dependency for Laravel Enso",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "mishu",
+            "name": "Mishu",
             "email": "mishu@xtelecom.ro"
         }
     ],
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.4.*"
+        "nesbot/carbon": ">=1.22.0"
     },
     "autoload": {
         "psr-4": {
