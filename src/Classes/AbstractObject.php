@@ -18,4 +18,19 @@ abstract class AbstractObject
     {
         return (array) $this;
     }
+
+    public function get(string $key)
+    {
+        return $this->$key;
+    }
+
+    public function has(string $key)
+    {
+        return property_exists($this, $key);
+    }
+
+    public function getProperties()
+    {
+        return array_keys(get_object_vars($this));
+    }
 }
