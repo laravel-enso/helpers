@@ -1,3 +1,4 @@
+<!--h--> 
 # Helpers
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4c084aada0bf4f70bf397338300bfc5d)](https://www.codacy.com/app/laravel-enso/Helpers?utm_source=github.com&utm_medium=referral&utm_content=laravel-enso/Helpers&utm_campaign=badger)
@@ -5,6 +6,7 @@
 [![License](https://poser.pugx.org/laravel-enso/helpers/license)](https://https://packagist.org/packages/laravel-enso/helpers)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/helpers/downloads)](https://packagist.org/packages/laravel-enso/helpers)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/helpers/version)](https://packagist.org/packages/laravel-enso/helpers)
+<!--/h-->
 
 Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
@@ -21,6 +23,12 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
+<!--h-->
 ### Contributions
 
-are welcome
+are welcome. Pull requests are great, but issues are good too.
+
+### License
+
+This package is released under the MIT license.
+<!--/h-->
