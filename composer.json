@@ -1,12 +1,19 @@
 {
     "name": "laravel-enso/helpers",
     "description": "Helper classes dependency for Laravel Enso",
+    "keywords": [
+        "laravel-enso",
+        "helpers"
+    ],
+    "homepage": "https://github.com/laravel-enso/Helpers",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mishu",
-            "email": "mishu@xtelecom.ro"
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
         }
     ],
     "require": {
