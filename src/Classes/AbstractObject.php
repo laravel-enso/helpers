@@ -4,6 +4,11 @@ namespace LaravelEnso\Helpers\Classes;
 
 abstract class AbstractObject
 {
+    public function all()
+    {
+        return get_object_vars($this);
+    }
+
     public function __toString()
     {
         return $this->toJson();
@@ -16,7 +21,7 @@ abstract class AbstractObject
 
     public function toArray()
     {
-        return (array) $this;
+        return $this->all();
     }
 
     public function get(string $key)
@@ -24,13 +29,23 @@ abstract class AbstractObject
         return $this->$key;
     }
 
+    public function set(string $key, $value)
+    {
+        return $this->$key = $value;
+    }
+
     public function has(string $key)
     {
         return property_exists($this, $key);
     }
 
-    public function getProperties()
+    public function keys()
     {
-        return array_keys(get_object_vars($this));
+        return array_keys($this->all());
+    }
+
+    public function values()
+    {
+        return array_values($this->all());
     }
 }

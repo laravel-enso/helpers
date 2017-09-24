@@ -16,11 +16,11 @@ trait IsActiveTrait
 
     public function isActive()
     {
-        return $this->is_active == 1;
+        return $this->is_active == true;
     }
 
     public function isDisabled()
     {
-        return $this->is_active == 0;
+        return $this->is_active == false;
     }
 }
