@@ -16,7 +16,7 @@ trait FormattedTimestamps
     public function getCreatedAtAttribute($value)
     {
         return $value
-            ? Carbon::parse($value)->format(config('enso.config.phpDateFormat'))
+            ? Carbon::parse($value)->format(config('laravel-enso.formattedTimestamps'))
             : null;
     }
 }
