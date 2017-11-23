@@ -2,19 +2,61 @@
 
 namespace LaravelEnso\Helpers\Classes;
 
-class Enum extends Object
+abstract class Enum
 {
-    public function __construct(string $config)
-    {
-        $this->checkConfig($config);
+    protected static $config;
+    protected static $data;
 
-        parent::__construct(config($config));
+    public static function get(string $key)
+    {
+        return self::data($key);
     }
 
-    private function checkConfig($config)
+    public static function has(string $key)
     {
-        if (config($config) === null || empty(config($config))) {
-            throw new \EnsoException('Error processing the enum file: '.$config);
-        }
+        $data = self::data();
+
+        return isset($data, $key);
+    }
+
+    public static function keys()
+    {
+        return array_keys(self::data());
+    }
+
+    public static function values()
+    {
+        return array_values(self::data());
+    }
+
+    public static function all()
+    {
+        return self::array();
+    }
+
+    public static function json()
+    {
+        return json_encode(self::data());
+    }
+
+    public static function array()
+    {
+        return self::data();
+    }
+
+    public static function object()
+    {
+        return (object) self::data();
+    }
+
+    private static function data(string $key = null)
+    {
+        $data = isset(static::$config)
+            ? config(static::$config)
+            : static::$data;
+
+        return $key
+            ? $data[$key]
+            : $data;
     }
 }

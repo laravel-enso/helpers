@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Helpers\Traits;
 
-trait IsActiveTrait
+trait IsActive
 {
     public function scopeActive($query)
     {
