@@ -55,7 +55,7 @@ abstract class Enum
             ? config(static::$config)
             : static::$data;
 
-        return !is_null($key)
+        return ! is_null($key)
             ? $data[$key]
             : $data;
     }
