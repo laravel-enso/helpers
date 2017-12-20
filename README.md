@@ -17,7 +17,7 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 - An `Obj` class, with a constructor for building an object from an array, that provides the following helper functions: all(), __toString(), toJson(), toArray(), get($key), set($key, $value), has($key), keys(), values()
 
 #### Traits
-- `IsActive` - adds active and disabled scopes
+- `IsActive` - adds `whereActive()` and `whereDisabled()` scopes, `isActive()` and `isDisabled()` helpers, for models that have a boolean `is_active` property
 
 ### Notes
 
