@@ -6,12 +6,12 @@ trait IsActive
 {
     public function isActive()
     {
-        return $this->is_active == true;
+        return $this->is_active === true;
     }
 
     public function isDisabled()
     {
-        return $this->is_active == false;
+        return $this->is_active === false;
     }
 
     public function scopeActive($query)
