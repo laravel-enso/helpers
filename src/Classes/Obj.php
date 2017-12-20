@@ -2,8 +2,15 @@
 
 namespace LaravelEnso\Helpers\Classes;
 
-abstract class AbstractObject
+class Obj
 {
+    public function __construct(array $array = [])
+    {
+        foreach ($array as $key => $value) {
+            $this->set($key, $value);
+        }
+    }
+
     public function all()
     {
         return get_object_vars($this);

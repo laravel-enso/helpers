@@ -12,15 +12,12 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 
 ### Includes
 
-#### Traits
-- `IsActive` - adds active and disabled scopes and helper attributes
-- `FormattedTimestamps` - used to format timestamps created with the timestamps() method in the Laravel migrations
-
 #### Classes
-- An `AbstractObject` PSR4 compliant class, that can be converted to string, JSON and array, meant to be extended
-- An abstract `Enum` class that comes with a constructor for building an enumeration out of a config file / array 
-- A concrete `Object` class, extends AbstractObject and has a constructor that can take a KV parameter 
+- An abstract `Enum` class with a constructor for building an enumeration out of an array or a config file 
+- An `Obj` class, with a constructor for building an object from an array, that provides the following helper functions: all(), __toString(), toJson(), toArray(), get($key), set($key, $value), has($key), keys(), values()
 
+#### Traits
+- `IsActive` - adds active and disabled scopes
 
 ### Notes
 

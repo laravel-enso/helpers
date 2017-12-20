@@ -6,21 +6,11 @@ trait IsActive
 {
     public function scopeActive($query)
     {
-        return $query->whereIsActive(1);
+        return $query->whereIsActive(true);
     }
 
     public function scopeDisabled($query)
     {
-        return $query->whereIsActive(0);
-    }
-
-    public function isActive()
-    {
-        return $this->is_active == true;
-    }
-
-    public function isDisabled()
-    {
-        return $this->is_active == false;
+        return $query->whereIsActive(false);
     }
 }
