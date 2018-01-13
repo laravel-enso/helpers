@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\Classes;
+namespace LaravelEnso\Helpers\app\Classes;
 
 abstract class Enum
 {
