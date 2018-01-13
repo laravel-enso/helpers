@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\Traits;
+namespace LaravelEnso\Helpers\app\Traits;
 
 trait IsActive
 {
