@@ -16,6 +16,10 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 - An abstract `Enum` class with a constructor for building an enumeration out of an array or a config file 
 - An `Obj` class, with a constructor for building an object from an array, that provides the following helper functions: all(), __toString(), toJson(), toArray(), get($key), set($key, $value), has($key), keys(), values()
 
+#### Exceptions
+
+- a generic exception: `EnsoException` is available also with a Facade. This exception is extended by all the other Enso specific exceptions and it is not reported by the Laravel's Exception Handler
+
 #### Traits
 - `IsActive` - adds `whereActive()` and `whereDisabled()` scopes, `isActive()` and `isDisabled()` helpers, for models that have a boolean `is_active` property
 
