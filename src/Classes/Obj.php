@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Helpers\Classes;
 
-class Object extends AbstractObject
+class Obj extends AbstractObject
 {
     public function __construct(array $properties = [])
     {
