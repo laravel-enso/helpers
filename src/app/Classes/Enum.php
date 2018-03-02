@@ -49,6 +49,13 @@ abstract class Enum
         return (object) self::data();
     }
 
+    public static function select()
+    {
+        return collect(self::data())->map(function ($value, $key) {
+            return (object) ['id' => $key, 'name' => $value];
+        });
+    }
+
     private static function data(string $key = null)
     {
         $data = isset(static::$config)
