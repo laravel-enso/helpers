@@ -53,7 +53,7 @@ abstract class Enum
     {
         return collect(self::data())->map(function ($value, $key) {
             return (object) ['id' => $key, 'name' => $value];
-        });
+        })->values();
     }
 
     private static function data(string $key = null)
