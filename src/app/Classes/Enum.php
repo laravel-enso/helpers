@@ -63,7 +63,16 @@ abstract class Enum
             : static::$data;
 
         return !is_null($key)
-            ? $data[$key]
-            : $data;
+            ? __($data[$key])
+            : self::trans($data);
+    }
+
+    private static function trans($data)
+    {
+        \Log::info('adf');
+
+        return collect($data)->map(function ($value) {
+            return __($value);
+        });
     }
 }
