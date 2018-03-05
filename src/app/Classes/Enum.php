@@ -69,8 +69,6 @@ abstract class Enum
 
     private static function trans($data)
     {
-        \Log::info('adf');
-
         return collect($data)->map(function ($value) {
             return __($value);
         });
