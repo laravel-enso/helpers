@@ -14,19 +14,17 @@ abstract class Enum
 
     public static function has(string $key)
     {
-        $data = self::data();
-
-        return isset($data, $key);
+        return self::data()->has($key);
     }
 
     public static function keys()
     {
-        return array_keys(self::data());
+        return self::data()->keys();
     }
 
     public static function values()
     {
-        return array_values(self::data());
+        return self::data()->values();
     }
 
     public static function all()
@@ -36,17 +34,17 @@ abstract class Enum
 
     public static function json()
     {
-        return json_encode(self::data());
+        return json_encode(self::array());
     }
 
     public static function array()
     {
-        return self::data();
+        return self::data()->toArray();
     }
 
     public static function object()
     {
-        return (object) self::data();
+        return self::data();
     }
 
     public static function select()
@@ -62,15 +60,22 @@ abstract class Enum
             ? config(static::$config)
             : static::$data;
 
-        return !is_null($key)
-            ? __($data[$key])
-            : self::trans($data);
+        return is_null($key)
+            ? self::transAll($data)
+            : self::trans($data[$key]);
     }
 
-    private static function trans($data)
+    private static function transAll($data)
     {
         return collect($data)->map(function ($value) {
-            return __($value);
+            return self::trans($value);
         });
+    }
+
+    private static function trans($value)
+    {
+        return is_string($value)
+            ? __($value)
+            : $value;
     }
 }
