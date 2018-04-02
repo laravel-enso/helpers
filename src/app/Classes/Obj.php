@@ -46,6 +46,11 @@ class Obj
         return property_exists($this, $key);
     }
 
+    public function forget(string $key)
+    {
+        unset($this->$key);
+    }
+
     public function keys()
     {
         return array_keys($this->all());

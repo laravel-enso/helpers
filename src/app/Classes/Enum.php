@@ -44,6 +44,11 @@ abstract class Enum
 
     public static function object()
     {
+        return (object) self::array();
+    }
+
+    public static function collection()
+    {
         return self::data();
     }
 
