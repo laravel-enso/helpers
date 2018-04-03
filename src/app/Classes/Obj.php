@@ -46,6 +46,11 @@ class Obj
         return property_exists($this, $key);
     }
 
+    public function filled(string $key)
+    {
+        return property_exists($this, $key) && !is_null($this->$key);
+    }
+
     public function forget(string $key)
     {
         unset($this->$key);
