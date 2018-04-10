@@ -4,8 +4,12 @@ namespace LaravelEnso\Helpers\app\Classes;
 
 abstract class Enum
 {
-    protected static $config;
     protected static $data;
+
+    protected static function attributes()
+    {
+        return [];
+    }
 
     public static function get(string $key)
     {
@@ -61,13 +65,13 @@ abstract class Enum
 
     private static function data(string $key = null)
     {
-        $data = isset(static::$config)
-            ? config(static::$config)
-            : static::$data;
+        if (!isset(static::$data)) {
+            static::$data = static::attributes();
+        }
 
         return is_null($key)
-            ? self::transAll($data)
-            : self::trans($data[$key]);
+            ? self::transAll(static::$data)
+            : self::trans(static::$data[$key]);
     }
 
     private static function transAll($data)
