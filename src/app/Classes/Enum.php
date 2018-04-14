@@ -65,13 +65,11 @@ abstract class Enum
 
     private static function data(string $key = null)
     {
-        if (!isset(static::$data)) {
-            static::$data = static::attributes();
-        }
+        $data = static::$data ?? static::attributes();
 
         return is_null($key)
-            ? self::transAll(static::$data)
-            : self::trans(static::$data[$key]);
+            ? static::transAll($data)
+            : static::trans($data[$key]);
     }
 
     private static function transAll($data)
