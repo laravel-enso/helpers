@@ -65,4 +65,19 @@ class Obj
     {
         return array_values($this->all());
     }
+
+    public function isEmpty()
+    {
+        return empty($this->all());
+    }
+
+    public function isNotEmpty()
+    {
+        return !$this->isEmpty();
+    }
+
+    public function count()
+    {
+        return count($this->all());
+    }
 }
