@@ -17,11 +17,16 @@ abstract class MorphableConfigMapper
         $this->morphable = $this->morphable();
     }
 
-    public function model()
+    public function class()
     {
         return is_array($this->morphable)
             ? $this->morphable['model']
             : $this->morphable;
+    }
+
+    public function model($id)
+    {
+        return $this->class()::find($id);
     }
 
     private function morphable()
