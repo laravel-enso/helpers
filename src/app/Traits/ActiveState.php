@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-trait IsActive
+trait ActiveState
 {
     public function isActive()
     {

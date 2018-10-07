@@ -10,7 +10,7 @@ abstract class Enum
 
     protected static function attributes()
     {
-        // return [];
+        return null;
     }
 
     private static function constants()
