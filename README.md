@@ -14,7 +14,6 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 
 - An abstract `Enum` class which can be used to build an enumeration out of an array or a config file and comes with a set of helper functions 
 - An `Obj` class, with a constructor for building an object from an array, that provides a suite of helper functions, such as: `all()`, `__toString()`, `toJson()`, `toArray()`, `get($key)`, `set($key, $value)`, `has($key)`, `keys()`, `values()` and more
-- A `MorphableConfigMapper` class, with helper methods when working with morphable models from the configuration
 
 #### Exceptions
 
