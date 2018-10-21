@@ -48,7 +48,7 @@ class Obj
 
     public function filled(string $key)
     {
-        return property_exists($this, $key) && !is_null($this->$key);
+        return property_exists($this, $key) && ! is_null($this->$key);
     }
 
     public function forget(string $key)
@@ -73,7 +73,7 @@ class Obj
 
     public function isNotEmpty()
     {
-        return !$this->isEmpty();
+        return ! $this->isEmpty();
     }
 
     public function count()

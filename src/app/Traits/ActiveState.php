@@ -11,7 +11,7 @@ trait ActiveState
 
     public function isDisabled()
     {
-        return !$this->is_active;
+        return ! $this->is_active;
     }
 
     public function scopeActive($query)
