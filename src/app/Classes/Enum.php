@@ -89,9 +89,9 @@ abstract class Enum
 
     private static function source()
     {
-        return static::constants()
+        return static::$data
             ?? static::attributes()
-            ?? static::$data;
+            ?? static::constants();
     }
 
     private static function transAll($data)
