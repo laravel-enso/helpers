@@ -2,11 +2,15 @@
 
 namespace LaravelEnso\Helpers\app\Classes;
 
+use Symfony\Component\Console\Exception\LogicException;
+
 class Obj
 {
-    public function __construct(array $array = [])
+    public function __construct($arg = null)
     {
-        foreach ($array as $key => $value) {
+        $this->validate($arg);
+
+        foreach ((array) $arg as $key => $value) {
             $this->set($key, $value);
         }
     }
@@ -79,5 +83,17 @@ class Obj
     public function count()
     {
         return count($this->all());
+    }
+
+    private function validate($arg)
+    {
+        if (! is_null($arg)
+            && ! is_object($arg)
+            && (! is_array($arg)
+                || (! empty($arg)
+                    && array_keys($arg) === range(0, count($arg) - 1)
+        ))) {
+            throw new LogicException('If provided, the Obj class constructor must receive an associative array or object');
+        }
     }
 }
