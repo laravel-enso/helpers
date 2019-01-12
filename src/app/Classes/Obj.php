@@ -2,17 +2,13 @@
 
 namespace LaravelEnso\Helpers\app\Classes;
 
-use Symfony\Component\Console\Exception\LogicException;
-
 class Obj
 {
-    public function __construct($arg = null)
+    public function __construct($arg = [], $root = true)
     {
-        $this->validate($arg);
-
-        foreach ((array) $arg as $key => $value) {
-            $this->set($key, $value);
-        }
+        $array = json_decode(json_encode($arg), true);
+        $this->validate($array, $root);
+        $this->toObj($array);
     }
 
     public function all()
@@ -85,15 +81,58 @@ class Obj
         return count($this->all());
     }
 
-    private function validate($arg)
+    private function toObj($array)
     {
-        if (! is_null($arg)
-            && ! is_object($arg)
-            && (! is_array($arg)
-                || (! empty($arg)
-                    && array_keys($arg) === range(0, count($arg) - 1)
-        ))) {
-            throw new LogicException('If provided, the Obj class constructor must receive an associative array or object');
+        foreach ($array as $key => $value) {
+            if ($this->isValid($key) && ! empty($key)) {
+                if (is_array($value) && ! empty($value)) {
+                    if ($this->isAssociative($value)) {
+                        $this->set($key, new Obj($value, $root = false));
+                        continue;
+                    }
+
+                    $this->set($key, $this->mapArray($value));
+                    continue;
+                }
+
+                $this->set($key, $value);
+            }
         }
+    }
+
+    private function mapArray($array)
+    {
+        return array_map(function ($value) {
+            return is_array($value) && ! empty($value) && $this->isAssociative($value)
+                ? new Obj($value, $root = false)
+                : $value;
+        }, $array);
+    }
+
+    private function validate($arg, $root)
+    {
+        if ($root && ! empty($array) && ! $this->isAssociative($arg)) {
+            throw new \LogicException(
+                'If provided, the Obj class constructor must receive an (nested) associative array or object'
+            );
+        }
+    }
+
+    private function isValid($key)
+    {
+        $valid = preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $key);
+
+        if (! $valid) {
+            throw new \LogicException(
+                'Key cannot be used as Object property: '.$key
+            );
+        }
+
+        return $valid;
+    }
+
+    private function isAssociative($array)
+    {
+        return array_keys($array) !== range(0, count($array) - 1);
     }
 }
