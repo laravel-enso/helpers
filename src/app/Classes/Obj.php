@@ -33,7 +33,9 @@ class Obj
 
     public function get(string $key)
     {
-        return $this->$key;
+        return $this->has('key')
+            ? $this->$key
+            : null;
     }
 
     public function set(string $key, $value)
