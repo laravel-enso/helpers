@@ -33,7 +33,7 @@ class Obj
 
     public function get(string $key)
     {
-        return $this->has('key')
+        return $this->has($key)
             ? $this->$key
             : null;
     }
@@ -89,7 +89,7 @@ class Obj
             if ($this->isValid($key) && ! empty($key)) {
                 if (is_array($value) && ! empty($value)) {
                     if ($this->isAssociative($value)) {
-                        $this->set($key, new self($value, $root = false));
+                        $this->set($key, new self($value, false));
                         continue;
                     }
 
@@ -106,14 +106,14 @@ class Obj
     {
         return array_map(function ($value) {
             return is_array($value) && ! empty($value) && $this->isAssociative($value)
-                ? new Obj($value, $root = false)
+                ? new Obj($value, false)
                 : $value;
         }, $array);
     }
 
     private function validate($arg, $root)
     {
-        if ($root && ! empty($array) && ! $this->isAssociative($arg)) {
+        if (is_null($arg) || $root && ! empty($arg) && ! $this->isAssociative($arg)) {
             throw new \LogicException(
                 'If provided, the Obj class constructor must receive an (nested) associative array or object'
             );
