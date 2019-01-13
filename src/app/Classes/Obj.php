@@ -89,7 +89,7 @@ class Obj
             if ($this->isValid($key) && ! empty($key)) {
                 if (is_array($value) && ! empty($value)) {
                     if ($this->isAssociative($value)) {
-                        $this->set($key, new Obj($value, $root = false));
+                        $this->set($key, new self($value, $root = false));
                         continue;
                     }
 
