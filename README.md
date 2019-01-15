@@ -13,15 +13,33 @@ Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Ens
 #### Classes
 
 - An abstract `Enum` class which can be used to build an enumeration out of an array or a config file and comes with a set of helper functions 
-- An `Obj` class, with a constructor for building an object from an array, that provides a suite of helper functions, such as: `all()`, `__toString()`, `toJson()`, `toArray()`, `get($key)`, `set($key, $value)`, `has($key)`, `keys()`, `values()` and more
+- An `Obj` class, with a constructor for building an object from an array, a Laravel model that can even have loaded relationships and more. 
+It provides a suite of helper functions, such as: 
+     * `all()`, 
+     * `__toString()`,
+     * `toJson()`,
+     * `toArray()`,
+     * `get($key)`,
+     * `set($key, $value)`,
+     * `has($key)`,
+     * `keys()`,
+     * `values()` 
+- A `JsonParser` class that takes a JSON file as its constrctor's argument, and can parse and transform the file to:
+    * object
+    * array
+    * JSON string
+     
 
 #### Exceptions
 
 - A generic exception: `EnsoException` is available also with a Facade. This exception is extended by all the other Enso specific exceptions and it is not reported by the Laravel's Exception Handler
+- A `FileMissingException`, a child of `EnsoException`
+- A `JsonParseException`, a child of `EnsoException`
+- A `MorphableConfigException`, a child of `EnsoException`
 
 #### Traits
 
-- `IsActive` - adds `whereActive()` and `whereDisabled()` scopes, `isActive()` and `isDisabled()` helpers, for models that have a boolean `is_active` property
+- `ActiveState` - adds `whereActive()` and `whereDisabled()` scopes, `isActive()` and `isDisabled()` helpers, for models that have a boolean `is_active` property
 
 ### Usage
 
