@@ -10,6 +10,7 @@ abstract class Enum
 
     protected static function attributes()
     {
+        //
     }
 
     private static function constants()
@@ -89,9 +90,12 @@ abstract class Enum
 
     private static function source()
     {
-        return static::$data
-            ?? static::attributes()
-            ?? static::constants();
+        if (! static::$data) {
+            static::$data = static::attributes()
+                ?? static::constants();
+        }
+
+        return static::$data;
     }
 
     private static function transAll($data)
