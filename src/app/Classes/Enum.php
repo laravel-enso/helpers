@@ -84,18 +84,15 @@ abstract class Enum
         return is_null($key)
             ? static::transAll($data)
             : (isset($data[$key])
-                ? static::trans($data[$key])
-                : null);
+            ? static::trans($data[$key])
+            : null);
     }
 
     private static function source()
     {
-        if (! static::$data) {
-            static::$data = static::attributes()
-                ?? static::constants();
-        }
-
-        return static::$data;
+        return static::$data
+            ?? static::attributes()
+            ?? static::constants();
     }
 
     private static function transAll($data)
