@@ -50,12 +50,16 @@ class Obj
 
     public function filled(string $key)
     {
-        return property_exists($this, $key) && ! is_null($this->$key);
+        return property_exists($this, $key)
+            && ! is_null($this->$key)
+            && ! empty($this->$key);
     }
 
-    public function forget(string $key)
+    public function forget($keys)
     {
-        unset($this->$key);
+        foreach ((array) $keys as $key) {
+            unset($this->$key);
+        }
     }
 
     public function keys()
