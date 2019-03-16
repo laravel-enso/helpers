@@ -43,7 +43,7 @@ It provides a suite of helper functions, such as:
 
 ### Usage
 
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/helpers.html)
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/helpers.html)
 
 ### Contributions
 
