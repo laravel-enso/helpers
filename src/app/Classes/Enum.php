@@ -7,6 +7,7 @@ use ReflectionClass;
 abstract class Enum
 {
     protected static $data;
+    protected static $localisation = true;
 
     protected static function attributes()
     {
@@ -62,7 +63,7 @@ abstract class Enum
 
     public static function object()
     {
-        return (object) self::array();
+        return (object)self::array();
     }
 
     public static function collection()
@@ -73,7 +74,7 @@ abstract class Enum
     public static function select()
     {
         return collect(self::data())->map(function ($value, $key) {
-            return (object) ['id' => $key, 'name' => $value];
+            return (object)['id' => $key, 'name' => $value];
         })->values();
     }
 
@@ -81,11 +82,13 @@ abstract class Enum
     {
         $data = self::source();
 
-        return is_null($key)
-            ? static::transAll($data)
-            : (isset($data[$key])
+        if (is_null($key)) {
+            return static::transAll($data);
+        }
+
+        return isset($data[$key])
             ? static::trans($data[$key])
-            : null);
+            : null;
     }
 
     private static function source()
@@ -104,8 +107,13 @@ abstract class Enum
 
     private static function trans($value)
     {
-        return is_string($value)
+        return is_string($value) && self::$localisation
             ? __($value)
             : $value;
+    }
+
+    public static function localisation($state = true)
+    {
+        self::$localisation = $state;
     }
 }
