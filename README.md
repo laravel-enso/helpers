@@ -8,42 +8,19 @@
 
 Helper classes dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
-### Includes
+This package can work independently of the [Enso](https://github.com/laravel-enso/Enso) ecosystem.
 
-#### Classes
+For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
 
-- An abstract `Enum` class which can be used to build an enumeration out of an array or a config file and comes with a set of helper functions 
-- An `Obj` class, with a constructor for building an object from an array, a Laravel model that can even have loaded relationships and more. 
-It provides a suite of helper functions, such as: 
-     * `all()`, 
-     * `__toString()`,
-     * `toJson()`,
-     * `toArray()`,
-     * `get($key)`,
-     * `set($key, $value)`,
-     * `has($key)`,
-     * `keys()`,
-     * `values()` 
-- A `JsonParser` class that takes a JSON file as its constrctor's argument, and can parse and transform the file to:
-    * object
-    * array
-    * JSON string
-     
+## Installation
 
-#### Exceptions
+Comes pre-installed in Enso.
 
-- A generic exception: `EnsoException` is available also with a Facade. This exception is extended by all the other Enso specific exceptions and it is not reported by the Laravel's Exception Handler
-- A `FileMissingException`, a child of `EnsoException`
-- A `JsonParseException`, a child of `EnsoException`
-- A `MorphableConfigException`, a child of `EnsoException`
-
-#### Traits
-
-- `ActiveState` - adds `whereActive()` and `whereDisabled()` scopes, `isActive()` and `isDisabled()` helpers, for models that have a boolean `is_active` property
+To install outside of Enso: `composer require laravel-enso/helpers` 
 
 ### Usage
 
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/helpers.html)
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/helpers.html)
 
 ### Contributions
 
