@@ -4,7 +4,7 @@ namespace LaravelEnso\Helpers\app\Classes;
 
 use ReflectionClass;
 
-abstract class Enum
+class Enum
 {
     protected static $data;
     protected static $localisation = true;
