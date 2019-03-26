@@ -63,7 +63,7 @@ class Enum
 
     public static function object()
     {
-        return (object)self::array();
+        return (object) self::array();
     }
 
     public static function collection()
@@ -74,7 +74,7 @@ class Enum
     public static function select()
     {
         return collect(self::data())->map(function ($value, $key) {
-            return (object)['id' => $key, 'name' => $value];
+            return (object) ['id' => $key, 'name' => $value];
         })->values();
     }
 
