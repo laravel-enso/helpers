@@ -90,7 +90,7 @@ class Obj
     private function toObj($array)
     {
         foreach ($array as $key => $value) {
-            if ($this->isValid($key) && ! empty($key)) {
+            if (! empty($key)) {
                 if (is_array($value) && ! empty($value)) {
                     if ($this->isAssociative($value)) {
                         $this->set($key, new self($value, false));
@@ -122,21 +122,6 @@ class Obj
                 'If provided, the Obj class constructor must receive an (nested) associative array or object'
             );
         }
-    }
-
-    private function isValid($key)
-    {
-        $valid = preg_match(
-            '/^[a-zA-Z_\x7f-\xff-#\/][a-zA-Z0-9_\x7f-\xff-#\/]*$/', $key
-        );
-
-        if (! $valid) {
-            throw new \LogicException(
-                'Key cannot be used as Object property: '.$key
-            );
-        }
-
-        return $valid;
     }
 
     private function isAssociative($array)
