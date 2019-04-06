@@ -9,12 +9,14 @@ use LaravelEnso\Helpers\app\Exceptions\FileMissingException;
 class JsonParser
 {
     private $filename;
-    private $returnsArray = false;
-    private $returnsJson = false;
+    private $array = false;
+    private $json = false;
 
     public function __construct(string $filename)
     {
         $this->filename = $filename;
+        $this->array = false;
+        $this->json = false;
     }
 
     public function object()
@@ -24,14 +26,14 @@ class JsonParser
 
     public function array()
     {
-        $this->returnsArray = true;
+        $this->array = true;
 
         return $this->get();
     }
 
     public function json()
     {
-        $this->returnsJson = true;
+        $this->json = true;
 
         return $this->get();
     }
@@ -40,7 +42,7 @@ class JsonParser
     {
         $json = $this->content();
 
-        $data = $this->returnsArray
+        $data = $this->array
             ? json_decode($json, true)
             : json_decode($json);
 
@@ -51,7 +53,7 @@ class JsonParser
             ));
         }
 
-        return $this->returnsJson
+        return $this->json
             ? $json
             : $data;
     }
@@ -60,7 +62,7 @@ class JsonParser
     {
         try {
             $json = \File::get($this->filename);
-        } catch (FileNotFoundException $exception) {
+        } catch (FileNotFoundException $e) {
             throw new FileMissingException(__(
                 'Specified json file was not found :filename',
                 ['filename' => $this->filename]

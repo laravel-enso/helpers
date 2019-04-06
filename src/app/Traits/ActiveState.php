@@ -23,4 +23,14 @@ trait ActiveState
     {
         return $query->whereIsActive(false);
     }
+
+    public function activate()
+    {
+        $this->update(['is_active' => true]);
+    }
+
+    public function disable()
+    {
+        $this->update(['is_active' => false]);
+    }
 }
