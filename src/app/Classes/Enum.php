@@ -26,12 +26,12 @@ class Enum
             : null;
     }
 
-    public static function get(string $key)
+    public static function get($key)
     {
         return self::data($key);
     }
 
-    public static function has(string $key)
+    public static function has($key)
     {
         return self::data()->has($key);
     }
@@ -78,7 +78,7 @@ class Enum
         })->values();
     }
 
-    private static function data(string $key = null)
+    private static function data($key = null)
     {
         $data = self::source();
 
