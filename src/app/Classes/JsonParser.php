@@ -9,8 +9,6 @@ use LaravelEnso\Helpers\app\Exceptions\FileMissingException;
 class JsonParser
 {
     private $filename;
-    private $array = false;
-    private $json = false;
 
     public function __construct(string $filename)
     {

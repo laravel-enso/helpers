@@ -5,7 +5,7 @@
         "laravel-enso",
         "helpers"
     ],
-    "homepage": "https://github.com/laravel-enso/Helpers",
+    "homepage": "https://github.com/laravel-enso/helpers",
     "type": "library",
     "license": "MIT",
     "authors": [
