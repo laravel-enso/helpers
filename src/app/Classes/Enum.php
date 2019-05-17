@@ -15,7 +15,7 @@ class Enum
         //
     }
 
-    private static function constants()
+    public static function constants()
     {
         $constants = array_flip(
             (new ReflectionClass(static::class))
