@@ -7,6 +7,7 @@ use ReflectionClass;
 class Enum
 {
     protected static $data;
+
     protected static $localisation = true;
 
     protected static function attributes()
@@ -82,7 +83,7 @@ class Enum
     {
         $data = self::source();
 
-        if (is_null($key)) {
+        if ($key === null) {
             return static::transAll($data);
         }
 

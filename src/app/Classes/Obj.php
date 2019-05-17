@@ -51,7 +51,7 @@ class Obj
     public function filled(string $key)
     {
         return property_exists($this, $key)
-            && ! is_null($this->$key)
+            && ! $this->$key !== null
             && ! empty($this->$key);
     }
 
@@ -117,7 +117,7 @@ class Obj
 
     private function validate($arg, $root)
     {
-        if (is_null($arg) || $root && ! empty($arg) && ! $this->isAssociative($arg)) {
+        if ($arg === null || $root && ! empty($arg) && ! $this->isAssociative($arg)) {
             throw new \LogicException(
                 'If provided, the Obj class constructor must receive an (nested) associative array or object'
             );
