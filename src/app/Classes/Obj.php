@@ -2,130 +2,34 @@
 
 namespace LaravelEnso\Helpers\app\Classes;
 
-class Obj
+use Illuminate\Support\Collection;
+
+class Obj extends Collection
 {
-    public function __construct($arg = [], $root = true)
+    public function __construct($items = [])
     {
-        $array = json_decode(json_encode($arg), true);
-        $this->validate($array, $root);
-        $this->toObj($array);
+        $this->init($this->getArrayableItems($items));
     }
 
-    public function all()
+    public function set($key, $value)
     {
-        return get_object_vars($this);
-    }
-
-    public function __toString()
-    {
-        return $this->toJson();
-    }
-
-    public function toJson()
-    {
-        return json_encode($this);
-    }
-
-    public function toArray()
-    {
-        return $this->all();
-    }
-
-    public function get(string $key)
-    {
-        return $this->has($key)
-            ? $this->$key
-            : null;
-    }
-
-    public function set(string $key, $value)
-    {
-        return $this->$key = $value;
-    }
-
-    public function has(string $key)
-    {
-        return property_exists($this, $key);
+        return $this->put($key, $value);
     }
 
     public function filled(string $key)
     {
-        return property_exists($this, $key)
-            && ! $this->$key !== null
-            && ! empty($this->$key);
+        return ! empty($this->get($key));
     }
 
-    public function forget($keys)
+    private function init($items)
     {
-        foreach ((array) $keys as $key) {
-            unset($this->$key);
-        }
-    }
-
-    public function keys()
-    {
-        return array_keys($this->all());
-    }
-
-    public function values()
-    {
-        return array_values($this->all());
-    }
-
-    public function isEmpty()
-    {
-        return empty($this->all());
-    }
-
-    public function isNotEmpty()
-    {
-        return ! $this->isEmpty();
-    }
-
-    public function count()
-    {
-        return count($this->all());
-    }
-
-    private function toObj($array)
-    {
-        foreach ($array as $key => $value) {
-            if (! empty($key)) {
-                if (is_array($value) && ! empty($value)) {
-                    if ($this->isAssociative($value)) {
-                        $this->set($key, new self($value, false));
-                        continue;
-                    }
-
-                    $this->set($key, $this->mapArray($value));
-                    continue;
-                }
-
-                $this->set($key, $value);
+        foreach ($items as $key => $item) {
+            if (! is_scalar($item) && $item !== null) {
+                $this->put($key, new self($item));
+                continue;
             }
+
+            $this->put($key, $item);
         }
-    }
-
-    private function mapArray($array)
-    {
-        return array_map(function ($value) {
-            return is_array($value) && ! empty($value) && $this->isAssociative($value)
-                ? new Obj($value, false)
-                : $value;
-        }, $array);
-    }
-
-    private function validate($arg, $root)
-    {
-        if ($arg === null || $root && ! empty($arg) && ! $this->isAssociative($arg)) {
-            throw new \LogicException(
-                'If provided, the Obj class constructor must receive an (nested) associative array or object'
-            );
-        }
-    }
-
-    private function isAssociative($array)
-    {
-        return array_keys($array) !== range(0, count($array) - 1);
     }
 }
