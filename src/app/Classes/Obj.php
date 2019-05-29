@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Helpers\app\Classes;
 
+use Exception;
 use Illuminate\Support\Collection;
 
 class Obj extends Collection
@@ -25,8 +26,11 @@ class Obj extends Collection
     {
         foreach ($items as $key => $item) {
             if (! is_scalar($item) && $item !== null) {
-                $this->put($key, new self($item));
-                continue;
+                try {
+                    $this->put($key, new self($item));
+                    continue;
+                } catch (Exception $e) {
+                }
             }
 
             $this->put($key, $item);
