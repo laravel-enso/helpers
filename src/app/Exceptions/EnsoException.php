@@ -8,7 +8,7 @@ class EnsoException extends Exception
 {
     public function __construct(string $message, int $code = 555)
     {
-        parent::__construct($message, $code);
+        parent::__construct(__($message), $code);
     }
 
     public function render()
