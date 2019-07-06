@@ -3,6 +3,7 @@
 namespace LaravelEnso\Helpers\app\Traits;
 
 use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 trait AvoidsDeletionConflicts
@@ -11,7 +12,7 @@ trait AvoidsDeletionConflicts
     {
         try {
             parent::delete();
-        } catch (\Exception $e) {
+        } catch (QueryException $e) {
             $model = str_replace('_', ' ', Str::singular($this->getTable()));
 
             throw new ConflictHttpException(__(
