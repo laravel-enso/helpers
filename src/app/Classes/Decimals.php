@@ -66,6 +66,11 @@ class Decimals
         return bccomp($first, $second, self::$scale) === 0;
     }
 
+    public static function notEq($first, $second)
+    {
+        return bccomp($first, $second, self::$scale) !== 0;
+    }
+
     public static function gt($first, $second)
     {
         return bccomp($first, $second, self::$scale) === 1;
