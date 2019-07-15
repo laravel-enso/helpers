@@ -13,7 +13,7 @@ trait MapsRequestKeys
         collect($this->validated())
             ->each(function ($value, $key) use (&$mapped) {
                 $mapped[Str::snake($key)] = $value;
-            }, []);
+            });
 
         return $mapped;
     }
