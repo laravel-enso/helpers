@@ -2,16 +2,37 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
+use LogicException;
+
 trait InCents
 {
     //protected $centAttributes = [ ];
 
-    protected $inCents = true;
+    public $inCents = null;
 
-    public function inCents($mode = true)
+    public static function bootInCents()
     {
+        self::retrieved(function ($model) {
+            $model->inCents = true;
+        });
+    }
+
+    public function inCents(bool $mode = true)
+    {
+        if ($this->inCents === null) {
+            if (collect($this->getDirty())->intersect($this->centAttributes)->isNotEmpty()) {
+                throw new LogicException(
+                    'Must set cent mode before filling cent attributes'
+                );
+            }
+
+            $this->inCents = $mode;
+
+            return $this;
+        }
+
         if ($this->inCents === $mode) {
-            return false;
+            return $this;
         }
 
         $this->inCents = $mode;
@@ -23,6 +44,6 @@ trait InCents
                     : $this->attributes[$field] / 100;
             });
 
-        return true;
+        return $this;
     }
 }
