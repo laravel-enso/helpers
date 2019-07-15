@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\FiscalDocuments\app\Traits;
+namespace LaravelEnso\Helpers\app\Traits;
 
 trait InCents
 {
