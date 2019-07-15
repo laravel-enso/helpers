@@ -11,7 +11,7 @@ trait AvoidsDeletionConflicts
     public function delete()
     {
         try {
-            parent::delete();
+            return parent::delete();
         } catch (QueryException $e) {
             $model = str_replace('_', ' ', Str::singular($this->getTable()));
 
