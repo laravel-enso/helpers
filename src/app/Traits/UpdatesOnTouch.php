@@ -5,7 +5,7 @@ namespace LaravelEnso\Helpers\app\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-trait UpdateOnTouch
+trait UpdatesOnTouch
 {
     public function touchOwners()
     {
