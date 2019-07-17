@@ -15,6 +15,10 @@ trait InCents
         self::retrieved(function ($model) {
             $model->inCents = true;
         });
+
+        self::saving(function ($model) {
+            $model->inCents();
+        });
     }
 
     public function inCents(bool $mode = true)
