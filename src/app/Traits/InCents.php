@@ -44,7 +44,7 @@ trait InCents
         collect($this->centAttributes)
             ->each(function ($field) {
                 $this->attributes[$field] = $this->inCents
-                    ? $this->attributes[$field] * 100
+                    ? (int) ($this->attributes[$field] * 100)
                     : $this->attributes[$field] / 100;
             });
 
