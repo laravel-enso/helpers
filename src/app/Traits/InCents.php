@@ -1,11 +1,15 @@
 <?php
+
 namespace LaravelEnso\Helpers\app\Traits;
+
 use LogicException;
 use LaravelEnso\Helpers\app\Classes\Decimals;
+
 trait InCents
 {
     //protected $centAttributes = [ ];
     public $inCents = null;
+
     public static function bootInCents()
     {
         self::retrieved(function ($model) {
@@ -15,6 +19,7 @@ trait InCents
             $model->inCents();
         });
     }
+
     public function inCents(bool $mode = true)
     {
         if ($this->inCents === null) {
@@ -24,6 +29,7 @@ trait InCents
                 );
             }
             $this->inCents = $mode;
+
             return $this;
         }
         if ($this->inCents === $mode) {
@@ -36,6 +42,7 @@ trait InCents
                     ? (int) Decimals::mul($this->attributes[$field], 100)
                     : Decimals::div($this->attributes[$field], 100);
             });
+
         return $this;
     }
 }
