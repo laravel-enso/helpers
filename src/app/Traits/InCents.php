@@ -8,6 +8,7 @@ use LaravelEnso\Helpers\app\Classes\Decimals;
 trait InCents
 {
     //protected $centAttributes = [ ];
+
     public $inCents = null;
 
     public static function bootInCents()
@@ -15,6 +16,7 @@ trait InCents
         self::retrieved(function ($model) {
             $model->inCents = true;
         });
+
         self::saving(function ($model) {
             $model->inCents();
         });
@@ -28,14 +30,18 @@ trait InCents
                     'Must set cent mode before filling cent attributes'
                 );
             }
+
             $this->inCents = $mode;
 
             return $this;
         }
+
         if ($this->inCents === $mode) {
             return $this;
         }
+
         $this->inCents = $mode;
+
         collect($this->centAttributes)
             ->each(function ($field) {
                 $this->attributes[$field] = $this->inCents
