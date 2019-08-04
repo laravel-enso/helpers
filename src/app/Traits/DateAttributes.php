@@ -6,12 +6,14 @@ use Carbon\Carbon;
 
 trait DateAttributes
 {
-    public function fillDateAttribute($attribute, $value)
+    public function fillDateAttribute($attribute, $value, $format = null)
     {
+        $format = $format
+            ?? config('enso.config.dateFormat')
+            ?? $this->getDateFormat();
+
         $this->attributes[$attribute] = $value && ! $value instanceof Carbon
-            ? Carbon::createFromFormat(
-                config('enso.config.dateFormat') ?? $this->getDateFormat(),
-                $value
-            ) : $value;
+            ? Carbon::createFromFormat($format, $value)
+            : $value;
     }
 }
