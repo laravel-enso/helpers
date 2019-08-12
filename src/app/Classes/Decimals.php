@@ -11,73 +11,73 @@ class Decimals
         self::$scale = $precision;
     }
 
-    public static function add($first, $second)
+    public static function add($first, $second, $precision = null)
     {
-        return bcadd($first, $second, self::$scale);
+        return bcadd($first, $second, $precision ?? self::$scale);
     }
 
-    public static function sub($first, $second)
+    public static function sub($first, $second, $precision = null)
     {
-        return bcsub($first, $second, self::$scale);
+        return bcsub($first, $second, $precision ?? self::$scale);
     }
 
-    public static function mul($first, $second)
+    public static function mul($first, $second, $precision = null)
     {
-        return bcmul($first, $second, self::$scale);
+        return bcmul($first, $second, $precision ?? self::$scale);
     }
 
-    public static function div($first, $second)
+    public static function div($first, $second, $precision = null)
     {
-        return bcdiv($first, $second, self::$scale);
+        return bcdiv($first, $second, $precision ?? self::$scale);
     }
 
-    public static function sqrt($operand)
+    public static function sqrt($operand, $precision = null)
     {
-        return bcsqrt($operand, self::$scale);
+        return bcsqrt($operand, $precision ?? self::$scale);
     }
 
-    public static function pow($first, $second)
+    public static function pow($first, $second, $precision = null)
     {
-        return bcpow($first, $second, self::$scale);
+        return bcpow($first, $second, $precision ?? self::$scale);
     }
 
-    public static function mod($first, $second)
+    public static function mod($first, $second, $precision = null)
     {
-        return bcmod($first, $second, self::$scale);
+        return bcmod($first, $second, $precision ?? self::$scale);
     }
 
-    public static function powmod($first, $second)
+    public static function powmod($first, $second, $precision = null)
     {
-        return bcpowmod($first, $second, self::$scale);
+        return bcpowmod($first, $second, $precision ?? self::$scale);
     }
 
-    public static function lt($first, $second)
+    public static function lt($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) === -1;
+        return bccomp($first, $second, $precision ?? self::$scale) === -1;
     }
 
-    public static function lte($first, $second)
+    public static function lte($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) !== 1;
+        return bccomp($first, $second, $precision ?? self::$scale) !== 1;
     }
 
-    public static function eq($first, $second)
+    public static function eq($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) === 0;
+        return bccomp($first, $second, $precision ?? self::$scale) === 0;
     }
 
-    public static function notEq($first, $second)
+    public static function notEq($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) !== 0;
+        return bccomp($first, $second, $precision ?? self::$scale) !== 0;
     }
 
-    public static function gt($first, $second)
+    public static function gt($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) === 1;
+        return bccomp($first, $second, $precision ?? self::$scale) === 1;
     }
 
-    public static function gte($first, $second)
+    public static function gte($first, $second, $precision = null)
     {
-        return bccomp($first, $second, self::$scale) !== -1;
+        return bccomp($first, $second, $precision ?? self::$scale) !== -1;
     }
 }
