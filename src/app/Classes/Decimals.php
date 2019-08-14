@@ -80,4 +80,18 @@ class Decimals
     {
         return bccomp($first, $second, $precision ?? self::$scale) !== -1;
     }
+
+    public static function ceil($value, $precision = null)
+    {
+        $scale = pow(10, $precision ?? self::$scale);
+
+        return ceil(Decimals::mul($value, $scale)) / $scale;
+    }
+
+    public static function floor($value, $precision = null)
+    {
+        $scale = pow(10, $precision ?? self::$scale);
+
+        return floor(static::mul($value, $scale)) / $scale;
+    }
 }
