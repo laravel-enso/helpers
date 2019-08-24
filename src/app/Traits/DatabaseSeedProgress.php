@@ -4,18 +4,25 @@ namespace LaravelEnso\Helpers\app\Traits;
 
 trait DatabaseSeedProgress
 {
+    private $progressBar;
+
     public function run()
     {
         $this->command->info('Seeding Database...');
 
-        $this->command->getOutput()->progressStart(count($this->seeders()));
+        $this->progressBar = $this->command->getOutput()
+            ->createProgressBar(count($this->seeders()));
+
+        $this->progressBar->start();
 
         collect($this->seeders())->each(function ($seeder) {
             $this->call($seeder, true);
 
-            $this->command->getOutput()->progressAdvance();
+            $this->progressBar->advance();
         });
 
-        $this->command->getOutput()->progressFinish();
+        $this->progressBar->finish();
+
+        $this->progressBar = null;
     }
 }
