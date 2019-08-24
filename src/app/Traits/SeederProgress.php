@@ -10,7 +10,7 @@ trait SeederProgress
     {
         $this->command->getOutput()->newLine();
 
-        $this->command->warn('Seeding '.__CLASS__.'...');
+        $this->command->warn('Seeding :'.__CLASS__);
 
         $this->progressBar = $this->command->getOutput()
             ->createProgressBar($count);
@@ -31,8 +31,6 @@ trait SeederProgress
 
         $this->progressBar = null;
 
-        $this->command->info('Seeded '.__CLASS__.'.');
-
-        $this->command->getOutput()->newLine();
+        $this->command->info('Seeded :'.__CLASS__);
     }
 }
