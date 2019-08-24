@@ -85,7 +85,7 @@ class Decimals
     {
         $scale = pow(10, $precision ?? self::$scale);
 
-        return ceil(Decimals::mul($value, $scale)) / $scale;
+        return ceil(self::mul($value, $scale)) / $scale;
     }
 
     public static function floor($value, $precision = null)
