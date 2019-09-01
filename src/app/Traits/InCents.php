@@ -45,7 +45,7 @@ trait InCents
         collect($this->centAttributes)
             ->each(function ($field) {
                 $this->attributes[$field] = $this->inCents
-                    ? (int) Decimals::mul($this->attributes[$field], 100)
+                    ? (int) ceil(Decimals::mul($this->attributes[$field], 100))
                     : Decimals::div($this->attributes[$field], 100);
             });
 
