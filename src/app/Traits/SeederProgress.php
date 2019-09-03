@@ -5,16 +5,18 @@ namespace LaravelEnso\Helpers\app\Traits;
 trait SeederProgress
 {
     private $progressBar;
-    private $chunk;
+    private $chunk = 1;
 
     private function start(int $count)
     {
+        $steps = (int) ($count / $this->chunk);
+
         $this->command->getOutput()->newLine();
 
         $this->command->warn('Seeding: '.__CLASS__." (chunks of {$this->chunk})");
 
         $this->progressBar = $this->command->getOutput()
-            ->createProgressBar($count);
+            ->createProgressBar($steps);
 
         $this->progressBar->start();
     }
@@ -24,7 +26,7 @@ trait SeederProgress
         $this->progressBar->advance();
     }
 
-    private function finish()
+    private function end()
     {
         $this->progressBar->finish();
 
@@ -38,6 +40,13 @@ trait SeederProgress
     private function chunk(int $chunk)
     {
         $this->chunk = $chunk;
+
+        return $this;
+    }
+    
+    private function count(int $count)
+    {
+        $this->count = $count;
 
         return $this;
     }
