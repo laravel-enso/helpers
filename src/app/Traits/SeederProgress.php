@@ -43,7 +43,7 @@ trait SeederProgress
 
         return $this;
     }
-    
+
     private function count(int $count)
     {
         $this->count = $count;
