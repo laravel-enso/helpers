@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Helpers\app\Classes;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use LaravelEnso\Helpers\app\Exceptions\JsonParseException;
 use LaravelEnso\Helpers\app\Exceptions\FileMissingException;
@@ -59,7 +60,7 @@ class JsonParser
     private function content()
     {
         try {
-            $json = \File::get($this->filename);
+            $json = File::get($this->filename);
         } catch (FileNotFoundException $e) {
             throw new FileMissingException(__(
                 'Specified json file was not found :filename',
