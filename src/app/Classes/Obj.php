@@ -21,7 +21,8 @@ class Obj extends Collection
     {
         return is_array($this->get($key))
             ? ! empty($this->get($key))
-            : $this->get($key) !== null;
+            : $this->get($key) !== null
+                && $this->get($key) !== '';
     }
 
     private function init($items)
