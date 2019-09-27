@@ -9,7 +9,7 @@ trait CascadesMorphMap
 {
     public function getMorphClass()
     {
-        $key = Str::singular($this->getTable());
+        $key = Str::camel(Str::singular($this->getTable()));
 
         return Relation::getMorphedModel($key)
             ? $key
