@@ -2,6 +2,9 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Str;
+
 trait CascadesMorphMap
 {
     public function getMorphClass()
