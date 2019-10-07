@@ -25,7 +25,8 @@ trait InCents
     public function inCents(bool $mode = true)
     {
         if ($this->inCents === null) {
-            if (collect($this->getDirty())->intersect($this->centAttributes)->isNotEmpty()) {
+            if (collect($this->getDirty())->keys()
+                ->intersect($this->centAttributes)->isNotEmpty()) {
                 throw new LogicException(
                     'Must set cent mode before filling cent attributes'
                 );
