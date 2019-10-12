@@ -4,24 +4,30 @@ namespace LaravelEnso\Helpers\app\Traits;
 
 trait ActiveState
 {
+    protected static function bootActiveState()
+    {
+        self::updating(function ($model) {
+            if ($model->isDirty('is_active')) {
+                $model->fireModelEvent('updatedActiveState', false);
+            }
+        });
+    }
+
+    protected function initializeActiveState()
+    {
+        if (! in_array('activation', $this->observables)) {
+            $this->observables[] = 'updatedActiveState';
+        }
+    }
+
     public function isActive()
     {
         return $this->is_active;
     }
 
-    public function isDisabled()
+    public function isInactive()
     {
-        return ! $this->is_active;
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->whereIsActive(true);
-    }
-
-    public function scopeDisabled($query)
-    {
-        return $query->whereIsActive(false);
+        return ! $this->isActive();
     }
 
     public function activate()
@@ -29,8 +35,18 @@ trait ActiveState
         $this->update(['is_active' => true]);
     }
 
-    public function disable()
+    public function deactivate()
     {
         $this->update(['is_active' => false]);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereIsActive(true);
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->whereIsActive(false);
     }
 }
