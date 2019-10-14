@@ -20,12 +20,12 @@ trait ActiveState
         }
     }
 
-    public function isActive()
+    public function isActive(): bool
     {
         return $this->is_active;
     }
 
-    public function isInactive()
+    public function isInactive(): bool
     {
         return ! $this->isActive();
     }
