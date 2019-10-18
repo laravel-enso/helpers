@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use LogicException;
 use LaravelEnso\Helpers\app\Classes\Decimals;
 
@@ -14,6 +15,9 @@ trait InCents
     public static function bootInCents()
     {
         self::retrieved(function ($model) {
+
+            \Log::debug('retrieved '. get_class($model));
+
             $model->inCents = true;
         });
 
@@ -24,7 +28,7 @@ trait InCents
 
     public function inCents(bool $mode = true)
     {
-        if ($this->inCents === null) {
+        if ($this->inCents === null && ! $this instanceof Pivot) {
             if (collect($this->getDirty())->keys()
                 ->intersect($this->centAttributes)->isNotEmpty()) {
                 throw new LogicException(
