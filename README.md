@@ -12,13 +12,7 @@ This package can work independently of the [Enso](https://github.com/laravel-ens
 
 For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
 
-## Installation
-
-Comes pre-installed in Enso.
-
-To install outside of Enso: `composer require laravel-enso/helpers` 
-
-### Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/helpers.html)
 
