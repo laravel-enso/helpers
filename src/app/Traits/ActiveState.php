@@ -15,7 +15,7 @@ trait ActiveState
 
     protected function initializeActiveState()
     {
-        if (! in_array('activation', $this->observables)) {
+        if (! in_array('updatedActiveState', $this->observables)) {
             $this->observables[] = 'updatedActiveState';
         }
     }
