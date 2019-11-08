@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 trait AvoidsDeletionConflicts

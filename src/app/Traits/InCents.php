@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-use LogicException;
-use LaravelEnso\Helpers\app\Classes\Decimals;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use LaravelEnso\Helpers\app\Classes\Decimals;
+use LogicException;
 
 trait InCents
 {

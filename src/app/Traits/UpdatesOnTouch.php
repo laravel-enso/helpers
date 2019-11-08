@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 trait UpdatesOnTouch
 {

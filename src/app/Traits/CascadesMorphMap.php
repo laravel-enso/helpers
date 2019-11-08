@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Str;
 
 trait CascadesMorphMap
 {
