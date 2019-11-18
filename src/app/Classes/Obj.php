@@ -19,10 +19,15 @@ class Obj extends Collection
 
     public function filled(string $key)
     {
-        return is_array($this->get($key))
-            ? ! empty($this->get($key))
-            : $this->get($key) !== null
-                && $this->get($key) !== '';
+        if (is_array($this->get($key))) {
+            return ! empty($this->get($key));
+        }
+
+        if ($this->get($key) instanceof Collection) {
+            return $this->get($key)->isNotEmpty();
+        }
+
+        return $this->get($key) !== null && $this->get($key) !== '';
     }
 
     private function init($items)
