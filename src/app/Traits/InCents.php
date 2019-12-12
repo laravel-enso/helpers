@@ -26,12 +26,7 @@ trait InCents
     public function inCents(bool $mode = true)
     {
         if ($this->inCents === null && ! $this instanceof Pivot) {
-            if (collect($this->getDirty())->keys()
-                ->intersect($this->centAttributes)->isNotEmpty()) {
-                throw new LogicException(
-                    'Must set cent mode before filling cent attributes'
-                );
-            }
+            $this->validate();
 
             $this->inCents = $mode;
 
@@ -44,6 +39,23 @@ trait InCents
 
         $this->inCents = $mode;
 
+        $this->convertCentValues();
+
+        return $this;
+    }
+
+    private function validate(): void
+    {
+        if (collect($this->getDirty())->keys()
+            ->intersect($this->centAttributes)->isNotEmpty()) {
+            throw new LogicException(
+                'Must set cent mode before filling cent attributes'
+            );
+        }
+    }
+
+    private function convertCentValues(): void
+    {
         collect($this->centAttributes)
             ->each(function ($field) {
                 if (isset($this->attributes[$field])) {
@@ -52,7 +64,5 @@ trait InCents
                         : Decimals::div($this->attributes[$field], 100);
                 }
             });
-
-        return $this;
     }
 }

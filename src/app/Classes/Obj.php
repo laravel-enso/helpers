@@ -4,6 +4,7 @@ namespace LaravelEnso\Helpers\app\Classes;
 
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class Obj extends Collection
 {
@@ -37,7 +38,8 @@ class Obj extends Collection
                 try {
                     $this->put($key, new self($item));
                     continue;
-                } catch (Exception $e) {
+                } catch (Exception $exception) {
+                    Log::warning($exception->getTraceAsString());
                 }
             }
 
