@@ -39,7 +39,7 @@ class Obj extends Collection
                     $this->put($key, new self($item));
                     continue;
                 } catch (Exception $exception) {
-                    Log::warning($exception->getTraceAsString());
+                    $this->put($key, $item);
                 }
             }
 
