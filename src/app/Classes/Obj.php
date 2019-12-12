@@ -4,7 +4,6 @@ namespace LaravelEnso\Helpers\app\Classes;
 
 use Exception;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class Obj extends Collection
 {
