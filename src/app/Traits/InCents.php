@@ -25,7 +25,11 @@ trait InCents
 
     public function inCents(bool $mode = true)
     {
-        if ($this->inCents === null && ! $this instanceof Pivot) {
+        if ($this->inCents === $mode) {
+            return $this;
+        }
+
+        if ($this->inCents === null) {
             if (collect($this->getDirty())->keys()
                 ->intersect($this->centAttributes)->isNotEmpty()) {
                 throw new LogicException(
@@ -35,10 +39,6 @@ trait InCents
 
             $this->inCents = $mode;
 
-            return $this;
-        }
-
-        if ($this->inCents === $mode) {
             return $this;
         }
 
