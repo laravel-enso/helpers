@@ -13,7 +13,7 @@ trait SeederProgress
 
         $this->command->getOutput()->newLine();
 
-        $this->command->warn('Seeding: '.__CLASS__." (chunks of {$this->chunk})");
+        $this->command->warn('Seeding: '.static::class." (chunks of {$this->chunk})");
 
         $this->progressBar = $this->command->getOutput()
             ->createProgressBar($steps);
@@ -34,7 +34,7 @@ trait SeederProgress
 
         $this->progressBar = null;
 
-        $this->command->info('Seeded: '.__CLASS__);
+        $this->command->info('Seeded: '.static::class);
     }
 
     private function chunk(int $chunk)
