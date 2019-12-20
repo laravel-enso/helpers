@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\Helpers\app\Traits;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use LaravelEnso\Helpers\app\Classes\Decimals;
 use LogicException;
 
