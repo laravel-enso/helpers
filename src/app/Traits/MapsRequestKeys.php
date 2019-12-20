@@ -8,13 +8,8 @@ trait MapsRequestKeys
 {
     public function mapped()
     {
-        $mapped = [];
-
-        collect($this->validated())
-            ->each(function ($value, $key) use (&$mapped) {
-                $mapped[Str::snake($key)] = $value;
-            });
-
-        return $mapped;
+        return collect($this->validated())
+            ->mapWithKeys(fn($value, $key) => [Str::snake($key) => $value])
+            ->toArray();
     }
 }
