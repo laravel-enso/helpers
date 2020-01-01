@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -15,12 +15,9 @@ trait UpdatesOnTouch
             if ($this->$relation instanceof Model) {
                 $this->$relation->fireModelEvent('saved', false);
                 $this->$relation->fireModelEvent('updated', false);
-
                 $this->$relation->touchOwners();
             } elseif ($this->$relation instanceof Collection) {
-                $this->$relation->each(function (Model $relation) {
-                    $relation->touchOwners();
-                });
+                $this->$relation->each(fn (Model $relation) => $relation->touchOwners());
             }
         }
     }

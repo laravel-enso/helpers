@@ -1,19 +1,17 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
+
+use Illuminate\Database\Eloquent\Builder;
 
 trait ActiveState
 {
-    protected static function bootActiveState()
+    public static function bootActiveState()
     {
-        self::updating(function ($model) {
-            if ($model->isDirty('is_active')) {
-                $model->fireModelEvent('updatedActiveState', false);
-            }
-        });
+        self::updating(fn ($model) => $model->fireEventIfActiveStateUpdated());
     }
 
-    protected function initializeActiveState()
+    public function initializeActiveState()
     {
         if (! in_array('updatedActiveState', $this->observables)) {
             $this->observables[] = 'updatedActiveState';
@@ -30,23 +28,30 @@ trait ActiveState
         return ! $this->isActive();
     }
 
-    public function activate()
+    public function activate(): void
     {
         $this->update(['is_active' => true]);
     }
 
-    public function deactivate()
+    public function deactivate(): void
     {
         $this->update(['is_active' => false]);
     }
 
-    public function scopeActive($query)
+    public function scopeActive(Builder $query): Builder
     {
         return $query->whereIsActive(true);
     }
 
-    public function scopeInactive($query)
+    public function scopeInactive(Builder $query): Builder
     {
         return $query->whereIsActive(false);
+    }
+
+    private function fireEventIfActiveStateUpdated(): void
+    {
+        if ($this->isDirty('is_active')) {
+            $this->fireModelEvent('updatedActiveState', false);
+        }
     }
 }

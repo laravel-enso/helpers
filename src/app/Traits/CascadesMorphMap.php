@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Str;

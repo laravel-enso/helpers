@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Contracts;
+namespace LaravelEnso\Helpers\App\Contracts;
 
 interface Activatable
 {

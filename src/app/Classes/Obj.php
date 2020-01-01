@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Classes;
+namespace LaravelEnso\Helpers\App\Classes;
 
 use Exception;
 use Illuminate\Support\Collection;
@@ -9,15 +9,15 @@ class Obj extends Collection
 {
     public function __construct($items = [])
     {
-        $this->init($this->getArrayableItems($items));
+        $this->initItems($this->getArrayableItems($items));
     }
 
-    public function set($key, $value)
+    public function set($key, $value): self
     {
         return $this->put($key, $value);
     }
 
-    public function filled(string $key)
+    public function filled(string $key): bool
     {
         if (is_array($this->get($key))) {
             return ! empty($this->get($key));
@@ -30,19 +30,23 @@ class Obj extends Collection
         return $this->get($key) !== null && $this->get($key) !== '';
     }
 
-    private function init($items)
+    private function initItems(array $items): void
     {
-        foreach ($items as $key => $item) {
-            if (! is_scalar($item) && $item !== null) {
-                try {
-                    $this->put($key, new self($item));
-                    continue;
-                } catch (Exception $exception) {
-                    $this->put($key, $item);
-                }
-            }
+        (new Collection($items))
+            ->each(fn ($item, $key) => $this->initItem($item, $key));
+    }
 
+    private function initItem($item, $key): void
+    {
+        if (is_scalar($item) || $item === null) {
             $this->put($key, $item);
+
+            return;
+        }
+
+        try {
+            $this->put($key, new self($item));
+        } catch (Exception $exception) {
         }
     }
 }

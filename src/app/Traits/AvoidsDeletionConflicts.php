@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ trait AvoidsDeletionConflicts
     {
         try {
             return parent::delete();
-        } catch (QueryException $e) {
+        } catch (QueryException $exception) {
             $model = str_replace('_', ' ', Str::singular($this->getTable()));
 
             throw new ConflictHttpException(__(

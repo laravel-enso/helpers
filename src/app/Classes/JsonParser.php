@@ -1,15 +1,16 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Classes;
+namespace LaravelEnso\Helpers\App\Classes;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
-use LaravelEnso\Helpers\app\Exceptions\FileMissingException;
-use LaravelEnso\Helpers\app\Exceptions\JsonParseException;
+use LaravelEnso\Helpers\App\Exceptions\JsonParse;
 
 class JsonParser
 {
-    private $filename;
+    private string $filename;
+    private bool $array;
+    private bool $json;
 
     public function __construct(string $filename)
     {
@@ -20,12 +21,16 @@ class JsonParser
 
     public function object()
     {
+        $this->array = false;
+        $this->json = false;
+
         return $this->get();
     }
 
     public function array()
     {
         $this->array = true;
+        $this->json = false;
 
         return $this->get();
     }
@@ -33,6 +38,7 @@ class JsonParser
     public function json()
     {
         $this->json = true;
+        $this->array = false;
 
         return $this->get();
     }
@@ -41,31 +47,21 @@ class JsonParser
     {
         $json = $this->content();
 
-        $data = $this->array
-            ? json_decode($json, true)
-            : json_decode($json);
+        $data = json_decode($json, $this->array);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new JsonParseException(__(
-                'Json file is not readable :filename',
-                ['filename' => $this->filename]
-            ));
+            throw JsonParse::invalidFile($this->filename);
         }
 
-        return $this->json
-            ? $json
-            : $data;
+        return $this->json ? $json : $data;
     }
 
-    private function content()
+    private function content(): string
     {
         try {
             $json = File::get($this->filename);
-        } catch (FileNotFoundException $e) {
-            throw new FileMissingException(__(
-                'Specified json file was not found :filename',
-                ['filename' => $this->filename]
-            ));
+        } catch (FileNotFoundException $exception) {
+            throw JsonParse::fileNotFound($this->filename);
         }
 
         return $json;

@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
+
+use Symfony\Component\Console\Helper\ProgressBar;
 
 trait SeederProgress
 {
-    private $progressBar;
-    private $chunk = 1;
+    private ProgressBar $progressBar;
+    private int $chunk = 1;
 
     private function start(int $count)
     {

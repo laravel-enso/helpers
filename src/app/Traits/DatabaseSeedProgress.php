@@ -1,10 +1,12 @@
 <?php
 
-namespace LaravelEnso\Helpers\app\Traits;
+namespace LaravelEnso\Helpers\App\Traits;
+
+use Symfony\Component\Console\Helper\ProgressBar;
 
 trait DatabaseSeedProgress
 {
-    private $progressBar;
+    private ProgressBar $progressBar;
 
     public function run()
     {
@@ -15,14 +17,17 @@ trait DatabaseSeedProgress
 
         $this->progressBar->start();
 
-        collect($this->seeders())->each(function ($seeder) {
-            $this->call($seeder, true);
-
-            $this->progressBar->advance();
-        });
+        collect($this->seeders())->each(fn ($seeder) => $this->callSeedr($seeder));
 
         $this->progressBar->finish();
 
         $this->progressBar = null;
+    }
+
+    private function callSeeder($seeder)
+    {
+        $this->call($seeder, true);
+
+        $this->progressBar->advance();
     }
 }
