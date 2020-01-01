@@ -17,9 +17,7 @@ trait InCents
             $model->inCents = true;
         });
 
-        self::saving(function ($model) {
-            $model->inCents();
-        });
+        self::saving(fn($model) => $model->inCents());
     }
 
     public function inCents(bool $mode = true)
@@ -44,12 +42,11 @@ trait InCents
         $this->inCents = $mode;
 
         collect($this->centAttributes)
+            ->filter(fn($filed) => isset($this->attributes[$field]))
             ->each(function ($field) {
-                if (isset($this->attributes[$field])) {
-                    $this->attributes[$field] = $this->inCents
-                        ? (int) ceil(Decimals::mul($this->attributes[$field], 100))
-                        : Decimals::div($this->attributes[$field], 100);
-                }
+                $this->attributes[$field] = $this->inCents
+                    ? (int) ceil(Decimals::mul($this->attributes[$field], 100))
+                    : Decimals::div($this->attributes[$field], 100);
             });
 
         return $this;
