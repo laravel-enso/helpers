@@ -14,7 +14,9 @@ trait InCents
 
     public static function bootInCents()
     {
-        self::retrieved(fn($model) => $model->inCents = true);
+        self::retrieved(function ($model) {
+            $model->inCents = true;
+        });
 
         self::saving(fn($model) => $model->inCents());
     }
