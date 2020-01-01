@@ -4,7 +4,7 @@ namespace LaravelEnso\Helpers\App\Exceptions;
 
 use Exception;
 
-class EnsoException extends Exception
+class MapsRequestKeysTest extends Exception
 {
     public function __construct(string $message, int $code = 555)
     {
