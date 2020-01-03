@@ -1,20 +1,29 @@
 <?php
+use LaravelEnso\Helpers\app\Traits\MapsRequestKeys;
+use Tests\TestCase;
 
-namespace LaravelEnso\Helpers\App\Exceptions;
-
-use Exception;
-
-class EnsoException extends Exception
+class MapsRequestKeysTest extends TestCase
 {
-    public function __construct(string $message, int $code = 555)
+    use MapsRequestKeys;
+    private array $params;
+
+    /** @test */
+    public function canMap()
     {
-        parent::__construct(__($message), $code);
+        $this->params = [
+            'camelCase' => 'camel_case',
+            'underline_case' => 'underline_case',
+            'kebab-case' => 'kebab-case',
+        ];
+        $this->assertEquals([
+            'camel_case' => 'camel_case',
+            'underline_case' => 'underline_case',
+            'kebab-case' => 'kebab-case',
+        ], $this->mapped());
     }
 
-    public function render()
+    private function validated()
     {
-        return response()->json([
-            'message' => $this->getMessage(),
-        ], $this->getCode());
+        return $this->params;
     }
 }
