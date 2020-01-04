@@ -4,7 +4,7 @@ namespace LaravelEnso\Helpers\App\Traits;
 
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Classes\Decimals;
-use LogicException;
+use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
 
 trait InCents
 {
@@ -21,7 +21,7 @@ trait InCents
 
     public function inCents(bool $mode = true)
     {
-        if ($this->canSetCentMode()) {
+        if ($this->inCents === null && $this->centAttributesAreClean()) {
             $this->inCents = $mode;
 
             return $this;
@@ -45,13 +45,11 @@ trait InCents
             : Decimals::div($this->attributes[$field], 100);
     }
 
-    private function canSetCentMode(): bool
+    private function centAttributesAreClean(): bool
     {
-        if ($this->inCents === null && (new Collection($this->getDirty()))->keys()
+        if ((new Collection($this->getDirty()))->keys()
             ->intersect($this->centAttributes)->isNotEmpty()) {
-            throw new LogicException(
-                'Must set cent mode before filling cent attributes'
-            );
+            throw Exception::dirty();
         }
 
         return true;

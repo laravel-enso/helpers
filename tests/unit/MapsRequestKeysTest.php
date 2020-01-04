@@ -1,4 +1,5 @@
 <?php
+
 use LaravelEnso\Helpers\app\Traits\MapsRequestKeys;
 use Tests\TestCase;
 
