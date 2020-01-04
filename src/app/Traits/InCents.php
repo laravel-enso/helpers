@@ -21,7 +21,7 @@ trait InCents
 
     public function inCents(bool $mode = true)
     {
-        if ($this->inCents === null && $this->hasCleanCentAttributes()) {
+        if ($this->canSetCentMode()) {
             $this->inCents = $mode;
 
             return $this;
@@ -45,9 +45,9 @@ trait InCents
             : Decimals::div($this->attributes[$field], 100);
     }
 
-    private function hasCleanCentAttributes(): bool
+    private function canSetCentMode(): bool
     {
-        if ((new Collection($this->getDirty()))->keys()
+        if ($this->inCents === null && (new Collection($this->getDirty()))->keys()
             ->intersect($this->centAttributes)->isNotEmpty()) {
             throw new LogicException(
                 'Must set cent mode before filling cent attributes'
