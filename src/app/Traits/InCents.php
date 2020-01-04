@@ -5,7 +5,6 @@ namespace LaravelEnso\Helpers\App\Traits;
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
-use LogicException;
 
 trait InCents
 {

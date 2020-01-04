@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
+use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
 use LaravelEnso\Helpers\App\Traits\InCents;
 use Tests\TestCase;
-use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
 
 class InCentsTest extends TestCase
 {
