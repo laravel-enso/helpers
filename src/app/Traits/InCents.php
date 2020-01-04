@@ -51,7 +51,7 @@ trait InCents
             ->intersect($this->centAttributes)->isNotEmpty()) {
             throw Exception::dirty();
         }
-        
+
         return true;
     }
 }
