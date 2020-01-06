@@ -29,13 +29,17 @@ trait InCents
 
         if ($this->inCents !== $mode) {
             $this->inCents = $mode;
-
-            (new Collection($this->centAttributes))
-                ->filter(fn ($field) => isset($this->attributes[$field]))
-                ->each(fn ($field) => $this->updateCentAttribute($field));
+            $this->updateCentAttributes();
         }
 
         return $this;
+    }
+
+    private function updateCentAttributes()
+    {
+        (new Collection($this->centAttributes))
+            ->filter(fn ($field) => isset($this->attributes[$field]))
+            ->each(fn ($field) => $this->updateCentAttribute($field));
     }
 
     private function updateCentAttribute($field)
