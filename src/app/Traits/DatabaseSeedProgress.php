@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Helpers\App\Traits;
 
+use Illuminate\Support\Collection;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 trait DatabaseSeedProgress
@@ -17,7 +18,7 @@ trait DatabaseSeedProgress
 
         $this->progressBar->start();
 
-        collect($this->seeders())->each(fn ($seeder) => $this->callSeedr($seeder));
+        (new Collection($this->seeders()))->each(fn ($seeder) => $this->callSeedr($seeder));
 
         $this->progressBar->finish();
 
