@@ -7,7 +7,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 trait DatabaseSeedProgress
 {
-    private ProgressBar $progressBar;
+    private ?ProgressBar $progressBar;
 
     public function run()
     {

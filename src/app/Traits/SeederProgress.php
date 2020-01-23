@@ -6,7 +6,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 trait SeederProgress
 {
-    private ProgressBar $progressBar;
+    private ?ProgressBar $progressBar;
     private int $chunk = 1;
 
     private function start(int $count)
