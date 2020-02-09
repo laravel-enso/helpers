@@ -2,55 +2,80 @@
 
 namespace LaravelEnso\Helpers\App\Classes;
 
+use BadMethodCallException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Helpers\App\Exceptions\JsonParse;
 
 class JsonParser
 {
+    private const Formats = ['object', 'array', 'json', 'collection', 'obj'];
+
     private string $filename;
     private bool $array;
     private bool $json;
+    private bool $collection;
+    private bool $obj;
 
     public function __construct(string $filename)
     {
         $this->filename = $filename;
         $this->array = false;
         $this->json = false;
+        $this->collection = false;
+        $this->obj = false;
     }
 
-    public function object()
+    public function __call($method, $args)
     {
-        $this->array = false;
-        $this->json = false;
+        if (in_array($method, self::Formats)) {
+            return $this->format($method);
+        }
+
+        $class = static::class;
+
+        throw new BadMethodCallException("Method {$class}::{$method}() not found");
+    }
+
+    private function format(string $format)
+    {
+        if ($format !== 'object') {
+            $this->enable($format);
+        }
+
+        (new Collection(self::Formats))->reject(fn ($type) => $type === $format)
+            ->each(fn ($format) => $this->disable($format));
 
         return $this->get();
     }
 
-    public function array()
+    private function enable(string $format)
     {
-        $this->array = true;
-        $this->json = false;
-
-        return $this->get();
+        $this->{$format} = true;
     }
 
-    public function json()
+    private function disable(string $format)
     {
-        $this->json = true;
-        $this->array = false;
-
-        return $this->get();
+        $this->{$format} = false;
     }
 
     private function get()
     {
         $json = $this->content();
 
-        $data = json_decode($json, $this->array);
+        $data = json_decode($json, $this->shouldDecodeToArray());
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw JsonParse::invalidFile($this->filename);
+        }
+
+        if ($this->obj) {
+            return new Obj($data);
+        }
+
+        if ($this->collection) {
+            return new Collection($data);
         }
 
         return $this->json ? $json : $data;
@@ -65,5 +90,10 @@ class JsonParser
         }
 
         return $json;
+    }
+
+    private function shouldDecodeToArray()
+    {
+        return $this->array || $this->collection || $this->obj;
     }
 }
