@@ -50,12 +50,12 @@ class JsonParser
         return $this->get();
     }
 
-    private function enable(string $format)
+    private function enable(string $format): void
     {
         $this->{$format} = true;
     }
 
-    private function disable(string $format)
+    private function disable(string $format): void
     {
         $this->{$format} = false;
     }
@@ -66,9 +66,7 @@ class JsonParser
 
         $data = json_decode($json, $this->shouldDecodeToArray());
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw JsonParse::invalidFile($this->filename);
-        }
+        $this->validate();
 
         if ($this->obj) {
             return new Obj($data);
@@ -92,8 +90,15 @@ class JsonParser
         return $json;
     }
 
-    private function shouldDecodeToArray()
+    private function shouldDecodeToArray(): bool
     {
         return $this->array || $this->collection || $this->obj;
+    }
+
+    private function validate(): void
+    {
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw JsonParse::invalidFile($this->filename);
+        }
     }
 }
