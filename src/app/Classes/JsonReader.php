@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Helpers\App\Exceptions\JsonParse;
 
-class JsonParser
+class JsonReader
 {
     private const Formats = ['object', 'array', 'json', 'collection', 'obj'];
 
