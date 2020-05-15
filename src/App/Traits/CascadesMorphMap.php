@@ -9,10 +9,15 @@ trait CascadesMorphMap
 {
     public function getMorphClass()
     {
-        $key = Str::camel(Str::singular($this->getTable()));
+        $key = self::morphMapKey();
 
         return Relation::getMorphedModel($key)
             ? $key
             : parent::getMorphClass();
+    }
+
+    public static function morphMapKey()
+    {
+        return Str::camel(Str::singular(static::query()->getModel()->getTable()));
     }
 }
