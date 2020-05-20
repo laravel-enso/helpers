@@ -18,7 +18,7 @@ trait TransformMorphMap
     {
         $model = (new Collection(Relation::$morphMap))
             ->search(fn ($model) => $model === $this->get($this->morphType()))
-            ?? $this->get($this->morphType());
+            ?: $this->get($this->morphType());
 
         $this->merge([$this->morphType() => $model]);
     }
