@@ -14,19 +14,16 @@ trait MapsRequestKeys
             ->toArray();
     }
 
-    public function withValidator($validator)
+    public function getValidatorInstance()
     {
-        $this->toSnakeCaseKeys($validator);
+        $this->toSnakeCaseKeys();
+
+        return parent::getValidatorInstance();
     }
 
-    public function validated()
+    private function toSnakeCaseKeys(): void
     {
-        return $this->snakeCaseKeys($this->validator->validated());
-    }
-
-    private function toSnakeCaseKeys($validator): void
-    {
-        $validator->after(fn () => $this->replace($this->snakeCaseKeys($this->all())));
+        $this->replace($this->snakeCaseKeys($this->all()));
     }
 
     private function snakeCaseKeys(array $request): array
