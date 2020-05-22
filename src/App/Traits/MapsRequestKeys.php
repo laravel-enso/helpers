@@ -7,13 +7,6 @@ use Illuminate\Support\Str;
 
 trait MapsRequestKeys
 {
-    public function mapped()
-    {
-        return (new Collection($this->validated()))
-            ->mapWithKeys(fn ($value, $key) => [Str::snake($key) => $value])
-            ->toArray();
-    }
-
     public function getValidatorInstance()
     {
         $this->toSnakeCaseKeys();
