@@ -7,25 +7,29 @@ class MapsRequestKeysTest extends TestCase
 {
     use MapsRequestKeys;
 
-    private array $params;
+    private TestValidator $validator;
 
     /** @test */
     public function canMap()
     {
-        $this->params = [
-            'camelCase' => 'camel_case',
-            'underline_case' => 'underline_case',
-            'kebab-case' => 'kebab-case',
-        ];
+        $this->validator = new TestValidator();
+
         $this->assertEquals([
             'camel_case' => 'camel_case',
             'underline_case' => 'underline_case',
             'kebab-case' => 'kebab-case',
-        ], $this->mapped());
+        ], $this->validated());
     }
+}
 
-    private function validated()
+class TestValidator
+{
+    public function validated()
     {
-        return $this->params;
+        return  [
+            'camelCase' => 'camel_case',
+            'underline_case' => 'underline_case',
+            'kebab-case' => 'kebab-case',
+        ];
     }
 }
