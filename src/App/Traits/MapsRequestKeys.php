@@ -9,9 +9,15 @@ trait MapsRequestKeys
 {
     public function getValidatorInstance()
     {
-        $this->toSnakeCaseKeys();
+        $validator = parent::getValidatorInstance();
+        $validator->after(fn () => $this->toSnakeCaseKeys());
 
-        return parent::getValidatorInstance();
+        return $validator;
+    }
+
+    public function validated()
+    {
+        return $this->snakeCaseKeys($this->validator->validated());
     }
 
     private function toSnakeCaseKeys(): void
