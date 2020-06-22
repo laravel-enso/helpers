@@ -17,11 +17,6 @@ trait CascadesMorphMap
             : parent::getMorphClass();
     }
 
-    public static function morphMapKey()
-    {
-        return Str::camel(Str::singular(static::query()->getModel()->getTable()));
-    }
-
     public static function morphMap()
     {
         Relation::morphMap([
@@ -29,5 +24,10 @@ trait CascadesMorphMap
         ]);
 
         static::$morphSiblings[] = static::class;
+    }
+
+    protected static function morphMapKey()
+    {
+        return Str::camel(Str::singular(static::query()->getModel()->getTable()));
     }
 }
