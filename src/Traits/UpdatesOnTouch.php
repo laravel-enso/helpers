@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Traits;
+namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
 

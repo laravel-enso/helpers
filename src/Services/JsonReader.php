@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Classes;
+namespace LaravelEnso\Helpers\Services;
 
 use BadMethodCallException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\File;
-use LaravelEnso\Helpers\App\Exceptions\JsonParse;
+use LaravelEnso\Helpers\Exceptions\JsonParse;
 
 class JsonReader
 {

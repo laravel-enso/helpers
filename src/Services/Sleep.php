@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Services;
+namespace LaravelEnso\Helpers\Services;
 
 use Illuminate\Support\Facades\Config;
 

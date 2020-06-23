@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
-use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
-use LaravelEnso\Helpers\App\Traits\InCents;
+use LaravelEnso\Helpers\Exceptions\InCents as Exception;
+use LaravelEnso\Helpers\Traits\InCents;
 use Tests\TestCase;
 
 class InCentsTest extends TestCase
@@ -68,7 +68,7 @@ class InCentsTest extends TestCase
 
     private function createInCentModelTable()
     {
-        Schema::create('in_cent_models', function($table) {
+        Schema::create('in_cent_models', function ($table) {
             $table->increments('id');
             $table->integer('amount');
             $table->timestamps();
@@ -87,7 +87,8 @@ class InCentsTest extends TestCase
     }
 }
 
-class InCentModel extends Model{
+class InCentModel extends Model
+{
     use InCents;
 
     protected $fillable = ['amount'];

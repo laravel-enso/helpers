@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Exceptions;
+namespace LaravelEnso\Helpers\Exceptions;
 
 use Exception;
 
 class EnsoException extends Exception
 {
-    public function __construct(string $message, int $code = 555)
+    public function __construct(string $message, int $code = 488)
     {
         parent::__construct(__($message), $code);
     }

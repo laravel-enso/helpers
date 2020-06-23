@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Traits;
+namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Helpers\App\Classes\Decimals;
-use LaravelEnso\Helpers\App\Exceptions\InCents as Exception;
+use LaravelEnso\Helpers\Classes\Decimals;
+use LaravelEnso\Helpers\Exceptions\InCents as Exception;
 
 trait InCents
 {
@@ -52,7 +52,8 @@ trait InCents
     private function centAttributesAreClean(): bool
     {
         if ((new Collection($this->getDirty()))->keys()
-            ->intersect($this->centAttributes)->isNotEmpty()) {
+            ->intersect($this->centAttributes)->isNotEmpty()
+        ) {
             throw Exception::dirty();
         }
 

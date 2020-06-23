@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Helpers\App\Classes;
+namespace LaravelEnso\Helpers\Services;
 
 class Decimals
 {
