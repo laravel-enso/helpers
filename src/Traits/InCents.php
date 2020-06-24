@@ -3,7 +3,7 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Helpers\Classes\Decimals;
+use LaravelEnso\Helpers\Services\Decimals;
 use LaravelEnso\Helpers\Exceptions\InCents as Exception;
 
 trait InCents
