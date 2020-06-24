@@ -3,8 +3,8 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Helpers\Services\Decimals;
 use LaravelEnso\Helpers\Exceptions\InCents as Exception;
+use LaravelEnso\Helpers\Services\Decimals;
 
 trait InCents
 {
