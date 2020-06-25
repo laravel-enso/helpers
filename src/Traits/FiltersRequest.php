@@ -6,10 +6,12 @@ use Illuminate\Support\Collection;
 
 trait FiltersRequest
 {
-    public function validatedExcept(array $except): array
+    public function validatedExcept($keys): array
     {
+        $keys = is_array($keys) ? $keys : func_get_args();
+
         return (new Collection($this->validated()))
-            ->except($except)
+            ->except($keys)
             ->toArray();
     }
 }
