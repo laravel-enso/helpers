@@ -26,7 +26,7 @@ trait CascadesMorphMap
         static::$morphSiblings[] = static::class;
     }
 
-    protected static function morphMapKey()
+    public static function morphMapKey()
     {
         return Str::camel(Str::singular(static::query()->getModel()->getTable()));
     }
