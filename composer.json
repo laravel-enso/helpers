@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "EnsoException": "LaravelEnso\\Helpers\\App\\Exceptions\\EnsoException"
+                "EnsoException": "LaravelEnso\\Helpers\\Exceptions\\EnsoException"
             }
         }
     }
