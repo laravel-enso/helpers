@@ -2,6 +2,8 @@
 
 namespace LaravelEnso\Helpers\Traits;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
 
 trait Searchable
@@ -21,8 +23,12 @@ trait Searchable
         return $result;
     }
 
-    private function shouldPerformSearchSyncing()
+    public function shouldPerformSearchSyncing()
     {
-        return ! empty(array_intersect_key($this->getDirty(), $this->toSearchableArray()));
+        $dirtyKeys = array_keys($this->getDirty());
+
+        return (new Collection($this->toSearchableArray()))->keys()
+            ->map(fn ($key) => Str::snake($key))
+            ->intersect($dirtyKeys)->isNotEmpty();
     }
 }
