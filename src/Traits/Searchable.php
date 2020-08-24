@@ -3,7 +3,6 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
 
@@ -13,7 +12,7 @@ trait Searchable
 
     public function save(array $options = [])
     {
-        if (! App::runningUnitTests() && $this->shouldPerformSearchSyncing()) {
+        if ($this->shouldPerformSearchSyncing()) {
             return parent::save($options);
         }
 
