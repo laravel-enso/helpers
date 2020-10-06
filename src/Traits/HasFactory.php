@@ -8,10 +8,10 @@ use Psy\Util\Str;
 trait HasFactory
 {
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
-    
+
     public static function factory(...$parameters)
     {
-        $factory  = static::newFactory() ?: self::packageFactory();
+        $factory = static::newFactory() ?: self::packageFactory();
 
         return $factory
             ->count(is_numeric($parameters[0] ?? null) ? $parameters[0] : null)
