@@ -20,7 +20,7 @@ class FactoryResolver
         $model = Str::after($this->modelName, 'Models\\');
         $class = "Database\\Factories\\{$model}Factory";
 
-        if(class_exists($class)) {
+        if (class_exists($class)) {
             return $class;
         }
     }
@@ -28,11 +28,11 @@ class FactoryResolver
     private function package()
     {
         $class = Str::of($this->modelName)
-            ->replaceFirst('\\Models','\\Database\\Factories')
+            ->replaceFirst('\\Models', '\\Database\\Factories')
             ->append('Factory')
             ->__toString();
 
-        if(class_exists($class)) {
+        if (class_exists($class)) {
             return $class;
         }
     }
