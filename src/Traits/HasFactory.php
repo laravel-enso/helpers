@@ -3,11 +3,12 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory as LaravelHasFactory;
 use Psy\Util\Str;
 
 trait HasFactory
 {
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    use LaravelHasFactory;
 
     public static function factory(...$parameters)
     {
