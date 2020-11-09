@@ -27,13 +27,17 @@ class FactoryResolver
 
     private function package()
     {
-        $class = Str::of($this->modelName)
-            ->replaceFirst('\\Models', '\\Database\\Factories')
-            ->append('Factory')
-            ->__toString();
+        $className = $this->className();
 
-        if (class_exists($class)) {
-            return $class;
+        if (class_exists($className)) {
+            return $className;
         }
+    }
+
+    private function className(): string
+    {
+        return Str::of($this->modelName)
+            ->replaceFirst('\\Models', '\\Database\\Factories')
+            ->append('Factory');
     }
 }
