@@ -6,19 +6,19 @@ use Illuminate\Support\Str;
 
 class FactoryResolver
 {
-    private string $modelName;
+    private string $model;
 
-    public function __invoke($modelName)
+    public function __invoke($model)
     {
-        $this->modelName = $modelName;
+        $this->model = $model;
 
         return $this->local() ?? $this->package();
     }
 
     private function local()
     {
-        $model = Str::after($this->modelName, 'Models\\');
-        $class = "Database\\Factories\\{$model}Factory";
+        $baseName = Str::after($this->model, 'Models\\');
+        $class = "Database\\Factories\\{$baseName}Factory";
 
         if (class_exists($class)) {
             return $class;
@@ -27,16 +27,16 @@ class FactoryResolver
 
     private function package()
     {
-        $className = $this->className();
+        $class = $this->class();
 
-        if (class_exists($className)) {
-            return $className;
+        if (class_exists($class)) {
+            return $class;
         }
     }
 
-    private function className(): string
+    private function class(): string
     {
-        return Str::of($this->modelName)
+        return Str::of($this->model)
             ->replaceFirst('\\Models', '\\Database\\Factories')
             ->append('Factory');
     }
