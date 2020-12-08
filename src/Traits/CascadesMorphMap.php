@@ -12,7 +12,7 @@ trait CascadesMorphMap
 
     public function getMorphClass()
     {
-        return in_array(static::class, static::$morphSiblings)
+        return in_array(static::class, self::$morphSiblings)
             ? self::morphMapKey()
             : parent::getMorphClass();
     }
@@ -23,7 +23,7 @@ trait CascadesMorphMap
             static::morphMapKey() => get_class(App::make(static::class)),
         ]);
 
-        static::$morphSiblings[] = static::class;
+        self::$morphSiblings[] = static::class;
     }
 
     public static function morphMapKey()
