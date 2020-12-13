@@ -7,11 +7,10 @@ use Illuminate\Support\Collection;
 class OptimalChunk
 {
     public const Thresholds = [
-        ['limit' => 1000, 'chunk' => 100],
-        ['limit' => 10 * 1000, 'chunk' => 250],
-        ['limit' => 50 * 1000, 'chunk' => 2 * 500],
-        ['limit' => 250 * 1000, 'chunk' => 4 * 500],
-        ['limit' => 1000 * 1000, 'chunk' => 10 * 500],
+        ['limit' => 10 * 1000, 'chunk' => 1000],
+        ['limit' => 50 * 1000, 'chunk' => 2 * 1000],
+        ['limit' => 250 * 1000, 'chunk' => 5 * 1000],
+        ['limit' => 1000 * 1000, 'chunk' => 10 * 1000],
     ];
 
     public const MaxChunk = 10000;
