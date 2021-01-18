@@ -2,8 +2,6 @@
 
 namespace LaravelEnso\Helpers\Services;
 
-use Illuminate\Support\Facades\Config;
-
 class Dummy
 {
     public function __call($name, $arguments)
