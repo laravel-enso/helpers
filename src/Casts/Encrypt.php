@@ -13,7 +13,7 @@ class Encrypt implements CastsAttributes
         try {
             return Crypt::decryptString($value);
         } catch (DecryptException $e) {
-            return null;
+            return;
         }
     }
 
