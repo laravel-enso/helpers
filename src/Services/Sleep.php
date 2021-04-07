@@ -2,22 +2,20 @@
 
 namespace LaravelEnso\Helpers\Services;
 
-use Illuminate\Support\Facades\Config;
-
 class Sleep
 {
     private int $debounce;
     private float $time;
 
-    public function __construct()
+    public function __construct(int $debounce)
     {
-        $this->debounce = Config::get('enso.emag.apiDebounce');
+        $this->debounce = $debounce;
         $this->time = $this->now();
     }
 
     public static function once()
     {
-        sleep(Config::get('enso.emag.apiDebounce'));
+        sleep($this->debounce);
     }
 
     public function __invoke()
