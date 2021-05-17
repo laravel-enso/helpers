@@ -25,6 +25,10 @@ trait Searchable
 
     public function shouldPerformSearchSyncing()
     {
+        if (! App::isProduction()) {
+            return false;
+        }
+
         $dirtyKeys = array_keys($this->getDirty());
 
         return (new Collection($this->toSearchableArray()))->keys()
