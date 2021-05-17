@@ -3,6 +3,7 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
 
