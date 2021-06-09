@@ -27,7 +27,7 @@ trait MapsRequestKeys
 
     private function snakeCaseKeys(array $request): array
     {
-        return (new Collection($request))
+        return Collection::wrap($request)
             ->mapWithKeys(fn ($value, $key) => [Str::snake($key) => $value])
             ->toArray();
     }

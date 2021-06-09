@@ -32,7 +32,7 @@ class Obj extends Collection
 
     private function initItems(array $items): void
     {
-        (new Collection($items))
+        Collection::wrap($items)
             ->each(fn ($item, $key) => $this->initItem($item, $key));
     }
 

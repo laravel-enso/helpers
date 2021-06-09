@@ -18,7 +18,8 @@ trait DatabaseSeedProgress
 
         $this->progressBar->start();
 
-        (new Collection($this->seeders()))->each(fn ($seeder) => $this->callSeedr($seeder));
+        Collection::wrap($this->seeders())
+            ->each(fn ($seeder) => $this->callSeedr($seeder));
 
         $this->progressBar->finish();
 

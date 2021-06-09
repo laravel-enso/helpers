@@ -17,7 +17,7 @@ class OptimalChunk
 
     public static function get(int $count, int $min = 1000000): int
     {
-        $match = (new Collection(self::Thresholds))
+        $match = Collection::wrap(self::Thresholds)
             ->first(fn ($threshold) => $count <= $threshold['limit']);
 
         $limit = $match ? $match['chunk'] : self::MaxChunk;

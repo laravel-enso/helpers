@@ -10,7 +10,7 @@ trait FiltersRequest
     {
         $keys = is_array($keys) ? $keys : func_get_args();
 
-        return (new Collection($this->validated()))
+        return Collection::wrap($this->validated())
             ->except($keys)
             ->toArray();
     }

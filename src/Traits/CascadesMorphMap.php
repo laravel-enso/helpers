@@ -20,7 +20,7 @@ trait CascadesMorphMap
     public static function morphMap()
     {
         Relation::morphMap([
-            static::morphMapKey() => get_class(App::make(static::class)),
+            static::morphMapKey() => App::make(static::class)::class,
         ]);
 
         self::$morphSiblings[] = static::class;

@@ -37,7 +37,7 @@ trait InCents
 
     private function updateCentAttributes()
     {
-        (new Collection($this->centAttributes))
+        Collection::wrap($this->centAttributes)
             ->filter(fn ($field) => isset($this->attributes[$field]))
             ->each(fn ($field) => $this->updateCentAttribute($field));
     }
@@ -51,9 +51,10 @@ trait InCents
 
     private function centAttributesAreClean(): bool
     {
-        if ((new Collection($this->getDirty()))->keys()
-            ->intersect($this->centAttributes)->isNotEmpty()
-        ) {
+        $dirty = Collection::wrap($this->getDirty())->keys()
+            ->intersect($this->centAttributes)->isNotEmpty();
+
+        if ($dirty) {
             throw Exception::dirty();
         }
 

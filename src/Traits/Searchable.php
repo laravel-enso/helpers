@@ -32,7 +32,7 @@ trait Searchable
 
         $dirtyKeys = array_keys($this->getDirty());
 
-        return (new Collection($this->toSearchableArray()))->keys()
+        return Collection::wrap($this->toSearchableArray())->keys()
             ->map(fn ($key) => Str::snake($key))
             ->intersect($dirtyKeys)->isNotEmpty();
     }

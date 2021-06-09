@@ -44,7 +44,8 @@ class JsonReader
             $this->enable($format);
         }
 
-        (new Collection(self::Formats))->reject(fn ($type) => $type === $format)
+        Collection::wrap(self::Formats)
+            ->reject(fn ($type) => $type === $format)
             ->each(fn ($format) => $this->disable($format));
 
         return $this->get();

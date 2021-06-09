@@ -16,7 +16,7 @@ trait TransformMorphMap
 
     protected function mapMorph()
     {
-        $model = (new Collection(Relation::$morphMap))
+        $model = Collection::wrap(Relation::$morphMap)
             ->search(fn ($model) => $model === $this->get($this->morphType()))
             ?: $this->get($this->morphType());
 
