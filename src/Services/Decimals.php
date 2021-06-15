@@ -85,7 +85,7 @@ class Decimals
     {
         $precision ??= self::$scale;
         $scale = pow(10, $precision);
-        $ceil = ceil(self::mul($value, $scale));
+        $ceil = ceil((float) self::mul($value, $scale));
 
         return self::div($ceil, $scale, $precision);
     }
@@ -94,11 +94,7 @@ class Decimals
     {
         $precision ??= self::$scale;
         $scale = pow(10, $precision ?? self::$scale);
-        $floor = (int) self::mul($value, $scale);
-
-        if ($floor < 0) {
-            $floor--;
-        }
+        $floor = floor((float) self::mul($value, $scale));
 
         return self::div($floor, $scale, $precision);
     }
