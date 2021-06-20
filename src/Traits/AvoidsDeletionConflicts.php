@@ -12,7 +12,7 @@ trait AvoidsDeletionConflicts
     {
         try {
             return parent::delete();
-        } catch (QueryException $exception) {
+        } catch (QueryException) {
             $model = str_replace('_', ' ', Str::singular($this->getTable()));
 
             throw new ConflictHttpException(__(

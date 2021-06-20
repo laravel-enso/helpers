@@ -46,7 +46,7 @@ class Obj extends Collection
 
         try {
             $this->put($key, new self($item));
-        } catch (Exception $exception) {
+        } catch (Exception) {
         }
     }
 }

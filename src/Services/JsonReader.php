@@ -84,7 +84,7 @@ class JsonReader
     {
         try {
             $json = File::get($this->filename);
-        } catch (FileNotFoundException $exception) {
+        } catch (FileNotFoundException) {
             throw JsonParse::fileNotFound($this->filename);
         }
 
