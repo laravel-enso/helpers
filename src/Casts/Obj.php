@@ -9,7 +9,7 @@ class Obj implements CastsAttributes
 {
     public function get($model, string $key, $value, array $attributes)
     {
-        return new Service($value);
+        return new Service(json_decode($value, true));
     }
 
     public function set($model, string $key, $value, array $attributes)
