@@ -4,7 +4,7 @@ namespace LaravelEnso\Helpers\Services;
 
 class DiskSize
 {
-    public static function forHumans(string $bytes)
+    public static function forHumans(string $bytes): string
     {
         $threshholds = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         $base = 1024;
