@@ -4,7 +4,7 @@ namespace LaravelEnso\Helpers\Services;
 
 class Decimals
 {
-    private static int $scale = 4;
+    private static int $scale = 2;
 
     public static function scale(int $precision): void
     {
