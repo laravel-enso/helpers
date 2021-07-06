@@ -4,6 +4,7 @@ namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use ReflectionClass;
 
 trait CascadesObservers
 {
@@ -15,8 +16,10 @@ trait CascadesObservers
             $instance->registerObserver($class);
         }
 
-        if (parent::class !== Model::class) {
-            parent::observe($classes);
+        $parent = (new ReflectionClass($instance))->getParentClass()->getName();
+
+        if ($parent !== Model::class) {
+            $parent::observe($classes);
         }
     }
 }
