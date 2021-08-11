@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
+use LaravelEnso\Webshop\Models\Settings;
 
 trait Searchable
 {
@@ -24,12 +25,13 @@ trait Searchable
         return $result;
     }
 
+    public function searchIndexShouldBeUpdated()
+    {
+        return class_exists(Settings::class) && Settings::usesAlgolia();
+    }
+
     public function shouldPerformSearchSyncing()
     {
-        if (! App::isProduction()) {
-            return false;
-        }
-
         $dirtyKeys = array_keys($this->getDirty());
 
         return Collection::wrap($this->toSearchableArray())->keys()
