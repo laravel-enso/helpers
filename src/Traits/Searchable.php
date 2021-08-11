@@ -3,6 +3,7 @@
 namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
 use LaravelEnso\Webshop\Models\Settings;
@@ -26,7 +27,9 @@ trait Searchable
 
     public function searchIndexShouldBeUpdated()
     {
-        return class_exists(Settings::class) && Settings::usesAlgolia();
+        return App::isProduction()
+            && class_exists(Settings::class)
+            && Settings::usesAlgolia();
     }
 
     public function shouldPerformSearchSyncing()
