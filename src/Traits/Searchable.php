@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
-use LaravelEnso\Webshop\Models\Settings;
+use LaravelEnso\Algolia\Models\Settings;
 
 trait Searchable
 {
@@ -29,7 +29,7 @@ trait Searchable
     {
         return App::isProduction()
             && class_exists(Settings::class)
-            && Settings::usesAlgolia();
+            && Settings::enabled();
     }
 
     public function shouldPerformSearchSyncing()
