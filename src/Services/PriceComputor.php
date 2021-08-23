@@ -10,11 +10,11 @@ class PriceComputor
     private string $discountPercent;
     private int $precision;
 
-    public function __construct(string $price, string $vatPercent)
+    public function __construct(string $price)
     {
         $this->price = $price;
-        $this->vatPercent = $vatPercent;
         $this->quantity = 1;
+        $this->vatPercent = 0;
         $this->discountPercent = 0;
         $this->precision = 2;
     }
@@ -29,6 +29,13 @@ class PriceComputor
     public function discountPercent(string $discountPercent): self
     {
         $this->discountPercent = $discountPercent;
+
+        return $this;
+    }
+
+    public function vatPercent(string $vatPercent): self
+    {
+        $this->vatPercent = $vatPercent;
 
         return $this;
     }
