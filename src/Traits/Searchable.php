@@ -28,6 +28,7 @@ trait Searchable
     public function searchIndexShouldBeUpdated()
     {
         return App::isProduction()
+            && $this::class === App::make($this::class)::class
             && class_exists(Settings::class)
             && Settings::enabled();
     }
