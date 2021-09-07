@@ -6,7 +6,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as ScoutSearchable;
-use LaravelEnso\Algolia\Models\Settings;
+use LaravelEnso\Algolia\Models\Settings as Algolia;
+use LaravelEnso\MeiliSearch\Models\Settings as Meilisearch;
 
 trait Searchable
 {
@@ -29,8 +30,8 @@ trait Searchable
     {
         return App::isProduction()
             && $this::class === App::make($this::class)::class
-            && class_exists(Settings::class)
-            && Settings::enabled();
+            && (class_exists(Algolia::class) && Algolia::enabled()
+                || class_exists(Meilisearch::class) && Meilisearch::enabled());
     }
 
     public function shouldPerformSearchSyncing()
