@@ -14,6 +14,6 @@ class Obj implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes)
     {
-        return $value;
+        return [$key => json_encode($value)];
     }
 }
