@@ -18,7 +18,7 @@ class PaymentMethods extends Enum
         self::OnDelivery => 'On Delivery',
         self::Wire => 'Transfer',
         self::PromissoryNote => 'Promissory Note',
-        self::Cash => 'Cash Register Receipt',
+        self::Cash => 'Cash',
         self::Cheque => 'Cheque',
     ];
 }
