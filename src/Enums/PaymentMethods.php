@@ -9,7 +9,6 @@ class PaymentMethods extends Enum
     public const Card = 1;
     public const OnDelivery = 2;
     public const Wire = 3;
-
     public const PromissoryNote = 4;
     public const Cash = 5;
     public const Cheque = 6;
