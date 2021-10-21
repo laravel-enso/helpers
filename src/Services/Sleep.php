@@ -13,12 +13,7 @@ class Sleep
         $this->time = $this->now();
     }
 
-    public static function once()
-    {
-        sleep($this->debounce);
-    }
-
-    public function __invoke()
+    public function __invoke(): self
     {
         $diff = $this->now() - $this->time;
 
