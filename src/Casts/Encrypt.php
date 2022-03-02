@@ -18,6 +18,8 @@ class Encrypt implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes)
     {
-        return Crypt::encryptString($value);
+        return $value !== null
+            ? Crypt::encryptString($value)
+            : null;
     }
 }

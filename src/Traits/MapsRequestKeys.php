@@ -15,7 +15,7 @@ trait MapsRequestKeys
         return $validator;
     }
 
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         return $this->snakeCaseKeys($this->validator->validated());
     }
