@@ -12,15 +12,15 @@ class JsonReader
 {
     private const Formats = ['object', 'array', 'json', 'collection', 'obj'];
 
-    private string $filename;
+    private string $path;
     private bool $array;
     private bool $json;
     private bool $collection;
     private bool $obj;
 
-    public function __construct(string $filename)
+    public function __construct(string $path)
     {
-        $this->filename = $filename;
+        $this->path = $path;
         $this->array = false;
         $this->json = false;
         $this->collection = false;
@@ -83,9 +83,9 @@ class JsonReader
     private function content(): string
     {
         try {
-            $json = File::get($this->filename);
+            $json = File::get($this->path);
         } catch (FileNotFoundException) {
-            throw JsonParse::fileNotFound($this->filename);
+            throw JsonParse::fileNotFound($this->path);
         }
 
         return $json;
@@ -99,7 +99,7 @@ class JsonReader
     private function validate(): void
     {
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw JsonParse::invalidFile($this->filename);
+            throw JsonParse::invalidFile($this->path);
         }
     }
 }
