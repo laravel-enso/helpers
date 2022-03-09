@@ -8,7 +8,7 @@ trait ActiveState
 {
     public static function bootActiveState()
     {
-        self::updating(fn ($model) => $model->fireEventIfActiveStateUpdated());
+        self::updating(fn ($model) => $model->fireStateEventIfUpdated());
     }
 
     public function initializeActiveState()
@@ -40,18 +40,18 @@ trait ActiveState
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->whereIsActive(true);
+        return $query->where("{$this->getTable()}.is_active", true);
     }
 
     public function scopeInactive(Builder $query): Builder
     {
-        return $query->whereIsActive(false);
+        return $query->where("{$this->getTable()}.is_active", false);
     }
 
-    private function fireEventIfActiveStateUpdated(): void
+    private function fireStateEventIfUpdated(): void
     {
         if ($this->isDirty('is_active')) {
-            $this->fireModelEvent('updatedActiveState', false);
+            $this->fireModelEvent('stateUpdated', false);
         }
     }
 }
