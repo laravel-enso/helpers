@@ -99,17 +99,22 @@ class Decimals
         return self::div($floor, $scale, $precision);
     }
 
+    public static function round($value, ?int $precision = null): string
+    {
+        $precision ??= self::$scale;
+        $scale = pow(10, $precision ?? self::$scale);
+        $round = round((float) self::mul($value, $scale));
+
+        return self::div($round, $scale, $precision);
+    }
+
     public static function min($first, $second, ?int $precision = null): string
     {
-        return self::lte($first, $second, $precision)
-            ? $first
-            : $second;
+        return self::lte($first, $second, $precision) ? $first : $second;
     }
 
     public static function max($first, $second, ?int $precision = null): string
     {
-        return self::gte($first, $second, $precision)
-            ? $first
-            : $second;
+        return self::gte($first, $second, $precision) ? $first : $second;
     }
 }
