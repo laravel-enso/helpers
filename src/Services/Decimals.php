@@ -6,7 +6,7 @@ class Decimals
 {
     private static int $scale = 2;
 
-    public static function scale(?int $precision = null): null | int
+    public static function scale(?int $precision = null): ?int
     {
         if ($precision) {
             self::$scale = $precision;
