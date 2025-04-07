@@ -6,9 +6,13 @@ class Decimals
 {
     private static int $scale = 2;
 
-    public static function scale(int $precision): void
+    public static function scale(?int $precision = null): null | int
     {
-        self::$scale = $precision;
+        if ($precision) {
+            self::$scale = $precision;
+        } else {
+            return self::$scale;
+        }
     }
 
     public static function add($first, $second, ?int $precision = null): string
