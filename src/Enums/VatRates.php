@@ -2,12 +2,15 @@
 
 namespace LaravelEnso\Helpers\Enums;
 
-use LaravelEnso\Enums\Services\Enum;
+use LaravelEnso\Enums\Contracts\Select;
+use LaravelEnso\Enums\Traits\Select as Options;
 
-class VatRates extends Enum
+enum VatRates:int implements Select
 {
-    public const None = 0;
-    public const Five = 5;
-    public const Nine = 9;
-    public const Nineteen = 19;
+    use Options;
+
+    case None = 0;
+    case Five = 5;
+    case Nine = 9;
+    case Nineteen = 19;
 }
