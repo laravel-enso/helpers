@@ -5,7 +5,7 @@ namespace LaravelEnso\Helpers\Enums;
 use LaravelEnso\Enums\Contracts\Select;
 use LaravelEnso\Enums\Traits\Select as Options;
 
-enum VatRates:int implements Select
+enum VatRate:int implements Select
 {
     use Options;
 
