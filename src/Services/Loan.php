@@ -2,8 +2,6 @@
 
 namespace LaravelEnso\Helpers\Services;
 
-use LaravelEnso\Helpers\Services\Decimals;
-
 class Loan
 {
     public function __construct(

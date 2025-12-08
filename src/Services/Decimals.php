@@ -4,15 +4,15 @@ namespace LaravelEnso\Helpers\Services;
 
 class Decimals
 {
-    private static int $scale = 2;
+    private static int $scale = 4;
 
-    public static function scale(?int $precision = null): null | int
+    public static function scale(?int $precision = null): int
     {
         if ($precision) {
             self::$scale = $precision;
-        } else {
-            return self::$scale;
         }
+
+        return self::$scale;
     }
 
     public static function add($first, $second, ?int $precision = null): string
