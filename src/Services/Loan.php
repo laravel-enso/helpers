@@ -8,7 +8,7 @@ class Loan
         private string $amount,
         private int $months,
         private string $yearlyInterest,
-        private string $monthlyAdministrationPercentage = '0',
+        private string $administrationFee = '0',
         private string $residualValuePercentage = '0',
     ) {
     }
@@ -65,7 +65,7 @@ class Loan
 
     private function monthlyAdministrationTax(): string
     {
-        $div = Decimals::div($this->monthlyAdministrationPercentage, 100);
+        $div = Decimals::div($this->administrationFee, 100);
 
         $mul = Decimals::mul($div, $this->amount);
 
