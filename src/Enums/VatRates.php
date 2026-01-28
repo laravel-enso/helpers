@@ -12,4 +12,9 @@ class VatRates extends Enum
     public const Eleven = 11;
     public const Nineteen = 19;
     public const TwentyOne = 21;
+
+    public static function multiplier(int $vatRate): string
+    {
+        return 1 + $vatRate / 100;
+    }
 }
