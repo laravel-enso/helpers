@@ -2,6 +2,7 @@
 
 use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MapsRequestKeysTest extends TestCase
 {
@@ -9,7 +10,7 @@ class MapsRequestKeysTest extends TestCase
 
     private TestValidator $validator;
 
-    /** @test */
+    #[Test]
     public function canMap()
     {
         $this->validator = new TestValidator();

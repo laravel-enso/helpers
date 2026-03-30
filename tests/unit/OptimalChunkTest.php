@@ -3,12 +3,13 @@
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\Services\OptimalChunk;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class OptimalChunkTest extends TestCase
 {
     private int $limit = 1000000;
 
-    /** @test */
+    #[Test]
     public function can_get_correct_chunk_within_threshold()
     {
         Collection::wrap(OptimalChunk::Thresholds)
@@ -16,7 +17,7 @@ class OptimalChunkTest extends TestCase
             ->each(fn ($threshold) => $this->assertCorrectChunk($threshold));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_maximal_chunk_above_threshold()
     {
         $threshold = Collection::wrap(OptimalChunk::Thresholds)->pop();
