@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use LaravelEnso\Helpers\Exceptions\InCents as Exception;
 use LaravelEnso\Helpers\Traits\InCents;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class InCentsTest extends TestCase
 {
@@ -17,7 +18,7 @@ class InCentsTest extends TestCase
         $this->createInCentModelTable();
     }
 
-    /** @test */
+    #[Test]
     public function can_set_incents()
     {
         $model = new InCentModel();
@@ -25,7 +26,7 @@ class InCentsTest extends TestCase
         $this->assertTrue($model->inCents);
     }
 
-    /** @test */
+    #[Test]
     public function cannot_set_incents_with_dirties()
     {
         $this->expectException(Exception::class);
@@ -35,7 +36,7 @@ class InCentsTest extends TestCase
         $model->inCents(true);
     }
 
-    /** @test */
+    #[Test]
     public function can_change_to_cent()
     {
         $model = new InCentModel();
@@ -45,7 +46,7 @@ class InCentsTest extends TestCase
         $this->assertEquals(1000 * 100, $model->amount);
     }
 
-    /** @test */
+    #[Test]
     public function can_change_from_cent()
     {
         $model = new InCentModel();
@@ -55,7 +56,7 @@ class InCentsTest extends TestCase
         $this->assertEquals(10, $model->amount);
     }
 
-    /** @test */
+    #[Test]
     public function can_store_cent()
     {
         $model = new InCentModel();
