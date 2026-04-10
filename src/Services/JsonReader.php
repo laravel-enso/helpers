@@ -40,7 +40,7 @@ class JsonReader
 
     private function format(string $format)
     {
-        if ($format !== 'object') {
+        if (in_array($format, self::Formats)) {
             $this->enable($format);
         }
 
