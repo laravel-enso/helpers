@@ -13,10 +13,10 @@ class JsonReader
     private const Formats = ['object', 'array', 'json', 'collection', 'obj'];
 
     private string $path;
+    private bool $object;
     private bool $array;
     private bool $json;
     private bool $collection;
-    private bool $obj;
 
     public function __construct(string $path)
     {
@@ -24,7 +24,7 @@ class JsonReader
         $this->array = false;
         $this->json = false;
         $this->collection = false;
-        $this->obj = false;
+        $this->object = false;
     }
 
     public function __call($method, $args)
