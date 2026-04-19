@@ -13,8 +13,8 @@ trait ActiveState
 
     public function initializeActiveState()
     {
-        if (! in_array('updatedActiveState', $this->observables)) {
-            $this->observables[] = 'updatedActiveState';
+        if (! in_array('stateUpdated', $this->observables)) {
+            $this->observables[] = 'stateUpdated';
         }
     }
 

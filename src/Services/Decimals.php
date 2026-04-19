@@ -50,9 +50,9 @@ class Decimals
         return bcmod($first, $second, $precision ?? self::$scale);
     }
 
-    public static function powmod($first, $second, ?int $precision = null): string
+    public static function powmod($first, $second, $modulus, ?int $precision = null): string
     {
-        return bcpowmod($first, $second, $precision ?? self::$scale);
+        return bcpowmod($first, $second, $modulus, $precision ?? self::$scale);
     }
 
     public static function lt($first, $second, ?int $precision = null): bool
