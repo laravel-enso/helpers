@@ -5,6 +5,7 @@
 [![Downloads](https://poser.pugx.org/laravel-enso/helpers/downloads)](https://packagist.org/packages/laravel-enso/helpers)
 [![PHP](https://img.shields.io/badge/php-8.0%2B-777bb4.svg)](composer.json)
 [![Issues](https://img.shields.io/github/issues/laravel-enso/helpers.svg)](https://github.com/laravel-enso/helpers/issues)
+[![Merge Requests](https://img.shields.io/github/issues-pr/laravel-enso/helpers.svg)](https://github.com/laravel-enso/helpers/pulls)
 
 ## Description
 
