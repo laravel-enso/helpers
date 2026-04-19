@@ -1,19 +1,19 @@
 <?php
 
 namespace {
-    class MissingFactoryModel
+    class HelpersMissingFactoryModel
     {
     }
 }
 
 namespace App\Models {
-    class Company
+    class HelpersResolverLocalModel
     {
     }
 }
 
 namespace Database\Factories {
-    class CompanyFactory
+    class HelpersResolverLocalModelFactory
     {
     }
 }

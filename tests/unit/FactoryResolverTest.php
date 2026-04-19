@@ -14,8 +14,8 @@ class FactoryResolverTest extends TestCase
         $resolver = new FactoryResolver();
 
         $this->assertSame(
-            'Database\\Factories\\CompanyFactory',
-            $resolver(App\Models\Company::class)
+            'Database\\Factories\\HelpersResolverLocalModelFactory',
+            $resolver(App\Models\HelpersResolverLocalModel::class)
         );
     }
 
@@ -35,6 +35,6 @@ class FactoryResolverTest extends TestCase
     {
         $resolver = new FactoryResolver();
 
-        $this->assertNull($resolver(MissingFactoryModel::class));
+        $this->assertNull($resolver(HelpersMissingFactoryModel::class));
     }
 }
