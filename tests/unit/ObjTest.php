@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\Services\Obj;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -11,9 +10,9 @@ class ObjTest extends TestCase
     public function wraps_nested_structures_as_obj_instances()
     {
         $obj = new Obj([
-            'name' => 'SolarLink',
+            'name'     => 'SolarLink',
             'settings' => [
-                'theme' => 'light',
+                'theme'   => 'light',
                 'options' => ['dense' => true],
             ],
             'items' => [1, 2, 3],
@@ -43,15 +42,15 @@ class ObjTest extends TestCase
     public function filled_handles_scalars_arrays_collections_and_nested_objs()
     {
         $obj = new Obj([
-            'null' => null,
-            'emptyString' => '',
-            'emptyArray' => [],
+            'null'            => null,
+            'emptyString'     => '',
+            'emptyArray'      => [],
             'emptyCollection' => collect(),
-            'nestedEmptyObj' => new Obj(),
-            'value' => 'ok',
-            'array' => ['x'],
-            'collection' => collect(['x']),
-            'nestedObj' => new Obj(['x' => 'y']),
+            'nestedEmptyObj'  => new Obj(),
+            'value'           => 'ok',
+            'array'           => ['x'],
+            'collection'      => collect(['x']),
+            'nestedObj'       => new Obj(['x' => 'y']),
         ]);
 
         $this->assertFalse($obj->filled('null'));

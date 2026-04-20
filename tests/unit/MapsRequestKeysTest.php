@@ -1,8 +1,8 @@
 <?php
 
 use LaravelEnso\Helpers\Traits\MapsRequestKeys;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class MapsRequestKeysTest extends TestCase
 {
@@ -16,9 +16,9 @@ class MapsRequestKeysTest extends TestCase
         $this->validator = new TestValidator();
 
         $this->assertEquals([
-            'camel_case' => 'camel_case',
+            'camel_case'     => 'camel_case',
             'underline_case' => 'underline_case',
-            'kebab-case' => 'kebab-case',
+            'kebab-case'     => 'kebab-case',
         ], $this->validated());
     }
 }
@@ -28,9 +28,9 @@ class TestValidator
     public function validated()
     {
         return  [
-            'camelCase' => 'camel_case',
+            'camelCase'      => 'camel_case',
             'underline_case' => 'underline_case',
-            'kebab-case' => 'kebab-case',
+            'kebab-case'     => 'kebab-case',
         ];
     }
 }

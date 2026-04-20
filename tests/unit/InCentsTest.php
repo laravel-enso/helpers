@@ -4,8 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use LaravelEnso\Helpers\Exceptions\InCents as Exception;
 use LaravelEnso\Helpers\Traits\InCents;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class InCentsTest extends TestCase
 {

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use PHPUnit\Framework\Attributes\Test;
 use LaravelEnso\Helpers\Traits\ActiveState;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ActiveStateTest extends TestCase

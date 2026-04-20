@@ -20,7 +20,7 @@ class Obj extends Collection
     public function filled(string $key): bool
     {
         if (is_array($this->get($key))) {
-            return ! empty($this->get($key));
+            return !empty($this->get($key));
         }
 
         if ($this->get($key) instanceof Collection) {

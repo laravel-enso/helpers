@@ -28,16 +28,16 @@ class RequestTraitsTest extends TestCase
     public function to_snake_case_rewrites_input_keys_before_validation()
     {
         $request = ToSnakeCaseRequestStub::create('/', 'POST', [
-            'camelCase' => 'camel',
-            'kebab-case' => 'kebab',
+            'camelCase'     => 'camel',
+            'kebab-case'    => 'kebab',
             'Already_Snake' => 'snake',
         ]);
 
         $request->prepareForValidation();
 
         $this->assertSame([
-            'camel_case' => 'camel',
-            'kebab-case' => 'kebab',
+            'camel_case'     => 'camel',
+            'kebab-case'     => 'kebab',
             'already__snake' => 'snake',
         ], $request->all());
     }
@@ -50,8 +50,8 @@ class FiltersRequestStub
     public function validated(): array
     {
         return [
-            'name' => 'SolarLink',
-            'role' => 'admin',
+            'name'  => 'SolarLink',
+            'role'  => 'admin',
             'email' => 'office@solarlink.test',
         ];
     }

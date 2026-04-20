@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\Attributes\Test;
 use LaravelEnso\Helpers\Services\Decimals;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class DecimalsTest extends TestCase

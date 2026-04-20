@@ -13,7 +13,7 @@ trait ActiveState
 
     public function initializeActiveState()
     {
-        if (! in_array('stateUpdated', $this->observables)) {
+        if (!in_array('stateUpdated', $this->observables)) {
             $this->observables[] = 'stateUpdated';
         }
     }
@@ -25,7 +25,7 @@ trait ActiveState
 
     public function isInactive(): bool
     {
-        return ! $this->isActive();
+        return !$this->isActive();
     }
 
     public function activate(): void

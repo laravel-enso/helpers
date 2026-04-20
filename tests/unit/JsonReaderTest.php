@@ -1,9 +1,9 @@
 <?php
 
-use PHPUnit\Framework\Attributes\Test;
 use LaravelEnso\Helpers\Exceptions\JsonParse;
 use LaravelEnso\Helpers\Services\JsonReader;
 use LaravelEnso\Helpers\Services\Obj;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class JsonReaderTest extends TestCase
@@ -17,9 +17,9 @@ class JsonReaderTest extends TestCase
         $this->path = tempnam(sys_get_temp_dir(), 'helpers-json-');
 
         file_put_contents($this->path, json_encode([
-            'name' => 'SolarLink',
+            'name'     => 'SolarLink',
             'settings' => ['theme' => 'light'],
-            'items' => [1, 2, 3],
+            'items'    => [1, 2, 3],
         ], JSON_THROW_ON_ERROR));
     }
 
@@ -86,7 +86,7 @@ class JsonReaderTest extends TestCase
         file_put_contents($this->path, '{"name":');
 
         $this->expectException(JsonParse::class);
-        $this->expectExceptionMessage("a valid json");
+        $this->expectExceptionMessage('a valid json');
 
         (new JsonReader($this->path))->array();
     }

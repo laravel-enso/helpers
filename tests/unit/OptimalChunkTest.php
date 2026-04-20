@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\Services\OptimalChunk;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class OptimalChunkTest extends TestCase
 {
@@ -31,8 +31,8 @@ class OptimalChunkTest extends TestCase
         $start = $index ? OptimalChunk::Thresholds[$index - 1]['limit'] : 0;
 
         return [
-            'min' => $start,
-            'max' => $threshold['limit'],
+            'min'   => $start,
+            'max'   => $threshold['limit'],
             'chunk' => $threshold['chunk'],
         ];
     }

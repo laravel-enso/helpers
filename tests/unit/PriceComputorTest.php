@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\Attributes\Test;
 use LaravelEnso\Helpers\Services\PriceComputor;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PriceComputorTest extends TestCase

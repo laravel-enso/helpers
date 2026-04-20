@@ -28,7 +28,7 @@ class CastsTest extends TestCase
     public function encrypt_cast_round_trips_values_through_eloquent()
     {
         $model = CastModel::create([
-            'secret' => 'top-secret',
+            'secret'  => 'top-secret',
             'payload' => ['theme' => 'light'],
         ]);
 
@@ -50,9 +50,9 @@ class CastsTest extends TestCase
     public function obj_cast_returns_wrapped_obj_instances_and_serializes_back_to_json()
     {
         $model = CastModel::create([
-            'secret' => 'top-secret',
+            'secret'  => 'top-secret',
             'payload' => [
-                'theme' => 'light',
+                'theme'    => 'light',
                 'settings' => ['dense' => true],
             ],
         ]);
@@ -74,7 +74,7 @@ class CastsTest extends TestCase
     public function obj_cast_handles_null_values()
     {
         $model = CastModel::create([
-            'secret' => null,
+            'secret'  => null,
             'payload' => null,
         ]);
 
@@ -94,7 +94,7 @@ class CastModel extends Model
     protected function casts(): array
     {
         return [
-            'secret' => \LaravelEnso\Helpers\Casts\Encrypt::class,
+            'secret'  => \LaravelEnso\Helpers\Casts\Encrypt::class,
             'payload' => \LaravelEnso\Helpers\Casts\Obj::class,
         ];
     }
