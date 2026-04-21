@@ -12,13 +12,13 @@ trait EnsuresTestingFolder
     {
         $folder = Config::get('enso.files.testingFolder');
 
-        if (! $folder) {
+        if (!$folder) {
             return;
         }
 
         $path = Storage::path($folder);
 
-        if (! File::isDirectory($path)) {
+        if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0755, true, true);
         }
     }
