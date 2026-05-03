@@ -4,6 +4,9 @@ namespace LaravelEnso\Helpers\Traits;
 
 use Illuminate\Support\Collection;
 
+/**
+ * @deprecated Use Laravel's native $request->safe()->except(...) instead.
+ */
 trait FiltersRequest
 {
     public function validatedExcept($keys): array

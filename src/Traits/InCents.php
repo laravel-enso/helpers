@@ -6,6 +6,9 @@ use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\Exceptions\InCents as Exception;
 use LaravelEnso\Helpers\Services\Decimals;
 
+/**
+ * @deprecated Use explicit model casts, accessors, and mutators for monetary values instead.
+ */
 trait InCents
 {
     //protected $centAttributes = [ ];

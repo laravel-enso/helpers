@@ -5,6 +5,9 @@ namespace LaravelEnso\Helpers\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+/**
+ * @deprecated Use ToSnakeCase instead.
+ */
 trait MapsRequestKeys
 {
     public function getValidatorInstance()
