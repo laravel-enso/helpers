@@ -9,9 +9,16 @@ trait ToSnakeCase
 {
     public function prepareForValidation()
     {
-        $input = Collection::wrap($this->all())
-            ->mapWithKeys(fn ($value, $key) => [Str::snake($key) => $value]);
+        $this->replace($this->snakeKeys($this->all()));
+    }
 
-        $this->replace($input->all());
+    private function snakeKeys(array $input): array
+    {
+        return Collection::wrap($input)
+            ->mapWithKeys(fn ($value, $key) => [
+                is_int($key) ? $key : Str::snake($key) => is_array($value)
+                    ? $this->snakeKeys($value)
+                    : $value,
+            ])->all();
     }
 }

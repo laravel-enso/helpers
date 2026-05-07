@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Helpers\Traits\FiltersRequest;
+use LaravelEnso\Helpers\Traits\GuardRelationLoad;
 use LaravelEnso\Helpers\Traits\ToSnakeCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -41,6 +43,42 @@ class RequestTraitsTest extends TestCase
             'already__snake' => 'snake',
         ], $request->all());
     }
+
+    #[Test]
+    public function to_snake_case_recursively_rewrites_nested_input_keys_before_validation()
+    {
+        $request = ToSnakeCaseRequestStub::create('/', 'POST', [
+            'flowPhase' => [
+                'statusId' => 1,
+                'transitionHandlers' => [
+                    ['conditionHandler' => 'Condition'],
+                ],
+            ],
+        ]);
+
+        $request->prepareForValidation();
+
+        $this->assertSame([
+            'flow_phase' => [
+                'status_id' => 1,
+                'transition_handlers' => [
+                    ['condition_handler' => 'Condition'],
+                ],
+            ],
+        ], $request->all());
+    }
+
+    #[Test]
+    public function guard_relation_load_returns_loaded_relation()
+    {
+        $guard = new GuardRelationLoadStub();
+        $model = new RelationLoadModelStub();
+        $relation = new RelationLoadModelStub();
+
+        $model->setRelation('flow', $relation);
+
+        $this->assertSame($relation, $guard->relation($model, 'flow'));
+    }
 }
 
 class FiltersRequestStub
@@ -70,4 +108,18 @@ class ToSnakeCaseRequestStub extends FormRequest
     {
         return [];
     }
+}
+
+class GuardRelationLoadStub
+{
+    use GuardRelationLoad;
+
+    public function relation(Model $model, string $relation): mixed
+    {
+        return $this->guardRelationLoad($model, $relation);
+    }
+}
+
+class RelationLoadModelStub extends Model
+{
 }

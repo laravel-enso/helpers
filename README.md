@@ -32,6 +32,7 @@ No publishing step is required.
 - Provides decimal-safe arithmetic helpers built on BCMath.
 - Includes utility services for JSON reading, object wrapping, disk-size formatting, loan rates, pricing, chunk sizing, and factory resolution.
 - Provides Eloquent and request traits for active state, request-key normalization, morph-map handling, observer cascading, and touch propagation.
+- Provides a relation-load guard trait for resources and serializers that must fail fast when expected Eloquent relations were not eager loaded.
 - Includes casts for encrypted strings and JSON-backed object payloads.
 - Ships helper enums for VAT rates and payment methods.
 - Provides ecosystem-level helper exceptions and a JSON-friendly `EnsoException`.
@@ -81,6 +82,31 @@ class StoreCompany extends FormRequest
 }
 ```
 
+`ToSnakeCase` rewrites nested array keys recursively, so frontend payloads may use camelCase while backend validation rules remain snake_case.
+
+Guard required Eloquent relations before serializing relation-dependent payloads:
+
+```php
+use Illuminate\Http\Resources\Json\JsonResource;
+use LaravelEnso\Helpers\Traits\GuardRelationLoad;
+
+class Project extends JsonResource
+{
+    use GuardRelationLoad;
+
+    public function toArray($request): array
+    {
+        $flow = $this->guardRelationLoad($this->resource, 'flow');
+
+        return [
+            'flow' => $flow->name,
+        ];
+    }
+}
+```
+
+The guard returns the loaded relation, so resources can use it directly after the load check.
+
 Use Laravel's native validated input API to exclude validated fields:
 
 ```php
@@ -126,6 +152,7 @@ Model traits:
 - `CascadesMorphMap`
 - `CascadesObservers`
 - `ForceableIndex`
+- `GuardRelationLoad`
 - `InCents` (deprecated)
 - `UpdatesOnTouch`
 
