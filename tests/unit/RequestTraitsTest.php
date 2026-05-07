@@ -79,6 +79,14 @@ class RequestTraitsTest extends TestCase
 
         $this->assertSame($relation, $guard->relation($model, 'flow'));
     }
+
+    #[Test]
+    public function guard_relation_load_fails_when_relation_is_not_loaded()
+    {
+        $this->expectException(\LogicException::class);
+
+        (new GuardRelationLoadStub())->relation(new RelationLoadModelStub(), 'flow');
+    }
 }
 
 class FiltersRequestStub
