@@ -13,17 +13,18 @@ class OptimalChunkTest extends TestCase
     public function can_get_correct_chunk_within_threshold()
     {
         Collection::wrap(OptimalChunk::Thresholds)
-            ->map(fn ($threshold, $index) => $this->map($threshold, $index))
-            ->each(fn ($threshold) => $this->assertCorrectChunk($threshold));
+            ->map(fn($threshold, $index) => $this->map($threshold, $index))
+            ->each(fn($threshold) => $this->assertCorrectChunk($threshold));
     }
 
     #[Test]
     public function can_get_maximal_chunk_above_threshold()
     {
         $threshold = Collection::wrap(OptimalChunk::Thresholds)->pop();
-        $chunk = OptimalChunk::get(++$threshold['limit'], $this->limit);
+        $actualChunk = OptimalChunk::get(++$threshold['limit'], $this->limit);
+        $expectedChunk = min(OptimalChunk::MaxChunk, $this->limit);
 
-        $this->assertEquals($chunk, OptimalChunk::MaxChunk);
+        $this->assertEquals($expectedChunk, $actualChunk);
     }
 
     private function map(array $threshold, int $index): array
